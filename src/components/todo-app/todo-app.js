@@ -17,6 +17,10 @@ const todos = [
 }
 ];
 
+// var tasksArr = [];
+const tasks = localStorage.getItem('storedTasks');
+todos=JSON.parse(tasks);
+
 export default class App extends React.Component {
     constructor(props) {
         super(props);
@@ -54,6 +58,9 @@ export default class App extends React.Component {
             </div>
         );
     }
+    componentDidMount(){
+      this.setState({tasks: tasksArr,});
+    }
 
       dragOver(e){
         e.preventDefault();
@@ -65,31 +72,31 @@ export default class App extends React.Component {
       event.dataTransfer.setData("text", event.target.getAttribute('id') );
       console.log( "DragStart id:",event.target.getAttribute('id'));
     }
-    resetZ(){
-      const elements = document.querySelectorAll('li')
-      for (var i = elements.lenght-1; i>=0; i--){
-        elements[i].style.zIndex=5;
-      }
-    }
-    onTouchStart(e){
-      e.preventDefault();
-      const whichArt = e.target;
-      const touch = e.touches[0];
-      console.log(touch);
-      const moveOffsetX = whichArt.offsetLeft - touch.pageX;
-      const moveOffsetY = whichArt.offsetTop - touch.pageY;
-      this.resetZ();
-      whichArt.style.zIndex= 10;
-      whichArt.addEventListener("touchmove", function(){
-        const positionX = touch.pageX + moveOffsetX;
-        const positionY = touch.pageY + moveOffsetY;
-        whichArt.style.left = positionX + "px";
-        whichArt.style.top = positionY + "px";
-      },false)
-      // event.dataTransfer.dropEffect = "move";
-      // event.dataTransfer.setData("text", event.target.getAttribute('id') );
-      // console.log( "DragStart id:",event.target.getAttribute('id'));
-    }
+    // resetZ(){
+    //   const elements = document.querySelectorAll('li')
+    //   for (var i = elements.lenght-1; i>=0; i--){
+    //     elements[i].style.zIndex=5;
+    //   }
+    // }
+    // onTouchStart(e){
+    //   e.preventDefault();
+    //   const whichArt = e.target;
+    //   const touch = e.touches[0];
+    //   console.log(touch);
+    //   const moveOffsetX = whichArt.offsetLeft - touch.pageX;
+    //   const moveOffsetY = whichArt.offsetTop - touch.pageY;
+    //   this.resetZ();
+    //   whichArt.style.zIndex= 10;
+    //   whichArt.addEventListener("touchmove", function(){
+    //     const positionX = touch.pageX + moveOffsetX;
+    //     const positionY = touch.pageY + moveOffsetY;
+    //     whichArt.style.left = positionX + "px";
+    //     whichArt.style.top = positionY + "px";
+    //   },false)
+    //   // event.dataTransfer.dropEffect = "move";
+    //   // event.dataTransfer.setData("text", event.target.getAttribute('id') );
+    //   // console.log( "DragStart id:",event.target.getAttribute('id'));
+    // }
     dragEnter(event) {
       console.log( "Enter id:",event.target.parentNode.id);
       event.target.style.backgroundColor = "red";
@@ -99,20 +106,20 @@ export default class App extends React.Component {
       console.log( "Leave id:",event.target.parentNode.id);
         event.target.style.backgroundColor = "lightGrey";
     }
-    onTouchMove(e){
-      // e.preventDefault();
-      // const whichArt = e.target;
-      // const touch = e.touches[0];
-      // console.log(touch);
-      // const moveOffsetX = whichArt.offsetLeft - touch.pageX;
-      // const moveOffsetY = whichArt.offsetTop - touch.pageY;
-      // this.resetZ();
-      // whichArt.style.zIndex= 10;
-      // const positionX = touch.pageX + moveOffsetX;
-      // const positionY = touch.pageY + moveOffsetY;
-      // whichArt.style.left = positionX + "px";
-      // whichArt.style.top = positionY + "px";
-    }
+    // onTouchMove(e){
+    //   // e.preventDefault();
+    //   // const whichArt = e.target;
+    //   // const touch = e.touches[0];
+    //   // console.log(touch);
+    //   // const moveOffsetX = whichArt.offsetLeft - touch.pageX;
+    //   // const moveOffsetY = whichArt.offsetTop - touch.pageY;
+    //   // this.resetZ();
+    //   // whichArt.style.zIndex= 10;
+    //   // const positionX = touch.pageX + moveOffsetX;
+    //   // const positionY = touch.pageY + moveOffsetY;
+    //   // whichArt.style.left = positionX + "px";
+    //   // whichArt.style.top = positionY + "px";
+    // }
 
     dragDrop(event) {
       event.preventDefault();
@@ -139,18 +146,6 @@ export default class App extends React.Component {
 
       // this.state.todos.splice(movedTextId, 1);
       this.setState({ todos: this.state.todos });
-
-      // fruits.splice(2, 0, "Lemon", "Kiwi");
-
-      // console.log( "Drop id:",event.target.parentNode.id);
-      // var elem_id = event.dataTransfer.getData("text2");
-      // console.log("setdata:",elem_id);
-      //
-      // foundTodo.task = newTask;
-      // this.setState({ todos: this.state.todos });
-      //
-      // _.remove(this.state.todos, todo => todo.task === taskToDelete);
-      // this.setState({ todos: this.state.todos });
     }
     dragEnd(event) {
       console.log( "DragEnd id:",event.target.getAttribute('id'));
