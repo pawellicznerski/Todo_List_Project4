@@ -69,9 +69,6 @@ export default class TodosListItem extends React.Component {
               onDragOver={this.props.dragOver.bind(this)}
               onDragLeave={this.props.dragLeave.bind(this)}
 
-              onTouchStart={this.props.touchStart.bind(this)}
-              onTouchMove={this.props.touchMove.bind(this)}
-              onTouchEnd={this.props.touchEnd.bind(this)}
               >
                 {this.renderTaskSection()}
                 {this.renderActionsSection()}
@@ -94,6 +91,11 @@ export default class TodosListItem extends React.Component {
         this.props.saveTask(oldTask, newTask);
         this.setState({ isEditing: false });
     }
-
-
 }
+
+
+
+
+              // onTouchStart={this.props.touchStart.bind(this)}
+              // onTouchMove={this.props.touchMove.bind(this)}
+              // onTouchEnd={this.props.touchEnd.bind(this)}
