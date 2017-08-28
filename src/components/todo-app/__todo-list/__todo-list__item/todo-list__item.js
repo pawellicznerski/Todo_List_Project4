@@ -73,7 +73,6 @@ export default class TodosListItem extends React.Component {
               onDrop={this.props.dragDrop.bind(this)}
               onDragOver={this.props.dragOver.bind(this)}
               onDragLeave={this.props.dragLeave.bind(this)}
-
               >
                 {this.renderTaskSection()}
                 {this.renderActionsSection()}

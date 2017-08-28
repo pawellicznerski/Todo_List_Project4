@@ -24,10 +24,9 @@ export default class TodoFinder extends React.Component {
     //function which renders error where the form is filled incorrectly
     renderError() {
         if (!this.state.error) { return null; }
-
         return <div style={{ color: 'red' }}>{this.state.error}</div>;
     }
-    
+
     handleChange(event) {
       event.preventDefault();
        this.setState({value: event.target.value});
