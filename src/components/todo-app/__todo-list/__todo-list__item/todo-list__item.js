@@ -5,10 +5,12 @@ export default class TodosListItem extends React.Component {
         super(props);
 
         this.state = {
-            isEditing: false
+            isEditing: false,
+            value:''
         };
     }
 
+// a fn which deals with rendering only text in a task section. there are two versions editable and not editable
     renderTaskSection() {
         const { task, isCompleted } = this.props;
 
@@ -22,7 +24,7 @@ export default class TodosListItem extends React.Component {
             return (
                 <div style={{backgroundColor:"lightGrey"}}>
                     <form onSubmit={this.onSaveClick.bind(this)}>
-                        <input type="text" defaultValue={task} ref="editInput" />
+                        <input type="text" defaultValue={task} ref="editInput" value={this.state.value} onChange={this.onChange.bind(this)} />
                     </form>
                 </div>
             );
@@ -36,7 +38,11 @@ export default class TodosListItem extends React.Component {
             </div>
         );
     }
-
+//updating the task's text value
+    onChange(){
+      this.setState({ value: event.target.value });
+    }
+// a fn which deals with rendering only buttons in a task section. there are two versions save/cancel and edit/delete
     renderActionsSection() {
         if (this.state.isEditing) {
             return (
@@ -54,7 +60,7 @@ export default class TodosListItem extends React.Component {
             </div>
         );
     }
-
+// a part resposible for rendering a whole element
     render() {
         return (
             <li
@@ -75,19 +81,18 @@ export default class TodosListItem extends React.Component {
             </li>
         );
     }
-
+  // fn which deals with editing text
     onEditClick() {
         this.setState({ isEditing: true });
     }
-
+    // fn which deals with canceling the editing mode
     onCancelClick() {
         this.setState({ isEditing: false });
     }
-
+    // fn which deals with saving the editing mode. The fn triggers fn saveTask() recived in props from todo-app
     onSaveClick(event) {
         event.preventDefault();
-        const oldTask = this.props.task;
-        const newTask = this.refs.editInput.value;
+        const newTask = this.state.value;
         this.props.saveTask(oldTask, newTask);
         this.setState({ isEditing: false });
     }
