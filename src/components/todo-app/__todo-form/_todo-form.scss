@@ -1,11 +1,68 @@
-.header__filters__el__search{
-  margin-right: 5vw;
-  height: 30px;
-  border: 1px solid blue;
-  &__input{
-    width: 70%
+
+.main__todo-creator{
+  width: 100vw;
+  &__content{
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(97,170,25,1);
+    &__form{
+      background-color: rgba(97,190,25,1);
+      width: 80vw;
+      border-radius: 15px 20px 20px 15px;
+      border: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      &__input{
+        outline: none;
+        border: 0;
+        background-color: rgba(97,190,25,1);
+        height: 30px;
+        width: 60vw;
+        color:  rgba(255,255,255,1);
+        font-size: 17px;
+        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+          color: rgba(255,255,255,0.7);
+          text-align: center;
+        }
+        &::-moz-placeholder { /* Firefox 19+ */
+          color: rgba(255,255,255,0.7);
+          text-align: center;
+        }
+        &::-ms-input-placeholder { /* IE 10+ */
+          color: rgba(255,255,255,0.7);
+          text-align: center;
+        }
+        &::-moz-placeholder { /* Firefox 18- */
+          color: rgba(255,255,255,0.7);
+          text-align: center;
+        }
+
+      }
+      &__button{
+        padding-top: 2px;
+        text-align: center;
+        line-height: 0;
+        vertical-align: middle;
+        border: 0 solid rgba(247,78,23,1);
+        // background-color: rgba(247,78,23,1);
+        background-color: rgba(255,255,255,1);
+        color:  rgba(97,170,25,1);
+        font-size: 40px;
+        font-weight: bold;
+        border-radius: 20px;
+        height: 40px;
+        width: 40px;
+      }
+    }
   }
-  &__button{
-    width: 30%
+  &__error{
+    width: 100vw;
+    text-align: center;
+    vertical-align: middle;
+    background-color: rgba(247,78,23,1);
+    color: rgba(255,255,255,1);
   }
 }

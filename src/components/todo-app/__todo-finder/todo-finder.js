@@ -14,9 +14,9 @@ export default class TodoFinder extends React.Component {
 // redering a form which all the navigates
     render() {
         return (
-          <form onSubmit={this.handleSearch.bind(this)}>
-              <input type="text" placeholder="Search for..." value={this.state.value} onChange={this.handleChange.bind(this)} />
-              <button>Search</button>
+          <form  className="header__filters__el header__filters__el__search"  onSubmit={this.handleSearch.bind(this)}>
+              <input className="header__filters__el__search__input"  type="text" placeholder="Search for..." value={this.state.value} onChange={this.handleChange.bind(this)} />
+              <button className="header__filters__el__search__button">Search</button>
               {this.renderError()}
           </form>
         );

@@ -1,11 +1,62 @@
-.header__filters__el__search {
-  margin-right: 5vw;
-  height: 30px;
-  border: 1px solid blue; }
-  .header__filters__el__search__input {
-    width: 70%; }
-  .header__filters__el__search__button {
-    width: 30%; }
+.main__todo-creator {
+  width: 100vw; }
+  .main__todo-creator__content {
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #61aa19; }
+    .main__todo-creator__content__form {
+      background-color: #61be19;
+      width: 80vw;
+      border-radius: 15px 20px 20px 15px;
+      border: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center; }
+      .main__todo-creator__content__form__input {
+        outline: none;
+        border: 0;
+        background-color: #61be19;
+        height: 30px;
+        width: 60vw;
+        color: white;
+        font-size: 17px; }
+        .main__todo-creator__content__form__input::-webkit-input-placeholder {
+          /* Chrome/Opera/Safari */
+          color: rgba(255, 255, 255, 0.7);
+          text-align: center; }
+        .main__todo-creator__content__form__input::-moz-placeholder {
+          /* Firefox 19+ */
+          color: rgba(255, 255, 255, 0.7);
+          text-align: center; }
+        .main__todo-creator__content__form__input::-ms-input-placeholder {
+          /* IE 10+ */
+          color: rgba(255, 255, 255, 0.7);
+          text-align: center; }
+        .main__todo-creator__content__form__input::-moz-placeholder {
+          /* Firefox 18- */
+          color: rgba(255, 255, 255, 0.7);
+          text-align: center; }
+      .main__todo-creator__content__form__button {
+        padding-top: 2px;
+        text-align: center;
+        line-height: 0;
+        vertical-align: middle;
+        border: 0 solid #f74e17;
+        background-color: white;
+        color: #61aa19;
+        font-size: 40px;
+        font-weight: bold;
+        border-radius: 20px;
+        height: 40px;
+        width: 40px; }
+  .main__todo-creator__error {
+    width: 100vw;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #f74e17;
+    color: white; }
 
 * {
   background-color: white;
@@ -36,6 +87,8 @@
 
 .header__logo {
   font-family: 'Pacifico', cursive;
+  background-color: #f74e17;
+  color: white;
   width: 100vw;
   display: flex;
   justify-content: center;

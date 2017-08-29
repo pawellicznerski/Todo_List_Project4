@@ -1,4 +1,6 @@
 @import "./__todo-form/todo-form";
+@import "./__todo-finder/todo-finder";
+@import "./__todo-list/todo-list";
 
 *{
   background-color: rgba(255,255,255,1);
@@ -30,6 +32,8 @@
 .header{
   &__logo{
     font-family: 'Pacifico', cursive;
+    background-color: rgba(247,78,23,1);
+    color: rgba(255,255,255,1);
     width: 100vw;
     display: flex;
     justify-content: center;

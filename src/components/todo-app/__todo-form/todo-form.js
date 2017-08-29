@@ -15,17 +15,21 @@ export default class CreateTodo extends React.Component {
     renderError() {
         if (!this.state.error) { return null; }
 
-        return <div style={{ color: 'red' }}>{this.state.error}</div>;
+        return <div className="main__todo-creator__error">{this.state.error}</div>;
     }
 
 // redering a form which all the navigates
     render() {
         return (
-            <form  className="header__filters__el header__filters__el__search" onSubmit={this.handleCreate.bind(this)}>
-                <input className="header__filters__el__search__input" type="text" placeholder="What do I need to do?" value={this.state.value} onChange={this.handleChange.bind(this)} />
-                <button className="header__filters__el__search__button">Create</button>
-                {this.renderError()}
-            </form>
+          <div className="main__todo-creator" >
+            <div className="main__todo-creator__content">
+              <form  className="main__todo-creator__content__form" onSubmit={this.handleCreate.bind(this)}>
+                  <input className="main__todo-creator__content__form__input" type="text" placeholder="What do I need to do?" value={this.state.value} onChange={this.handleChange.bind(this)} />
+                  <button className="main__todo-creator__content__form__button">+</button>
+              </form>
+            </div>
+            {this.renderError()}
+          </div>
         );
     }
 

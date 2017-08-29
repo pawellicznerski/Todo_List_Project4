@@ -41,29 +41,28 @@ export default class App extends React.Component {
                     </select>
                   </div>
                 </header>
-
-                <CreateTodo
-                  todos={this.state.todos}
-                  createTask={this.createTask.bind(this)}
-                />
-
-                {this.renderError()}
-
-                <TodosList
-                  todos={this.state.todos}
-                  toggleTask={this.toggleTask.bind(this)}
-                  saveTask={this.saveTask.bind(this)}
-                  dropBlockOnEdit={this.dropBlockOnEdit.bind(this)}
-                  deleteTask={this.deleteTask.bind(this)}
-                  dragStart={this.dragStart.bind(this)}
-                  dragEnd={this.dragEnd.bind(this)}
-                  dragEnter={this.dragEnter.bind(this)}
-                  dragLeave={this.dragLeave.bind(this)}
-                  dragOver={this.dragOver}
-                  dragDrop={this.dragDrop.bind(this)}
-                />
-
+                <main className="main">
+                  <CreateTodo
+                    todos={this.state.todos}
+                    createTask={this.createTask.bind(this)}
+                  />
+                  {this.renderError()}
+                  <TodosList
+                    todos={this.state.todos}
+                    toggleTask={this.toggleTask.bind(this)}
+                    saveTask={this.saveTask.bind(this)}
+                    dropBlockOnEdit={this.dropBlockOnEdit.bind(this)}
+                    deleteTask={this.deleteTask.bind(this)}
+                    dragStart={this.dragStart.bind(this)}
+                    dragEnd={this.dragEnd.bind(this)}
+                    dragEnter={this.dragEnter.bind(this)}
+                    dragLeave={this.dragLeave.bind(this)}
+                    dragOver={this.dragOver}
+                    dragDrop={this.dragDrop.bind(this)}
+                  />
+                </main>
             </div>
+
         );
     }
 
@@ -176,17 +175,20 @@ export default class App extends React.Component {
     toggleTask(task) {
       this.state.todos=tasksVar;
       const foundTodo = _.find(this.state.todos, todo => todo?todo.task === task:null);
-      const sendValueToFilter = foundTodo.isCompleted===true?"complete":"incomplete";
+      const sendValueToFilter = foundTodo.isCompleted?"complete":"incomplete";
+      console.log(sendValueToFilter);
       foundTodo.isCompleted = !foundTodo.isCompleted;
       // _.remove(this.state.todos , todo => todo===null);
       this.setState({ todos: this.state.todos });
       this.updateLocalStorage(this.state.todos);
-      this.filterTasks(sendValueToFilter);
+      if(this.state.selectionActive){
+        this.filterTasks(sendValueToFilter);
+      }
     }
     //function which renders error where the form is filled incorrectly
     renderError() {
         if (!this.state.error) { return null; }
-        return <div style={{ color: 'red' }}>{this.state.error}</div>;
+        return <div className="main__todo-creator__error">{this.state.error}</div>;
     }
     //function which deels with creating a new element on the list
     createTask(task) {
