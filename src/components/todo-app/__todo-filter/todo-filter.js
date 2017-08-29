@@ -6,21 +6,16 @@ export default class TodoFilter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          value:'all',
+          value:this.props.selectionValue,
         };
     }
-    handleChange(event) {
-      event.preventDefault();
-       this.setState({value: event.target.value});
-       this.props.filterTasks(event.target.value);
-       console.log(event.target.value);
-     }
-    //  componentDidUpdate(this.props.selectionActive){
+
+    //  componentDidUpdate(selectionActive){
     //    if(!this.props.selectionActive){
     //      this.setState({
     //        value:'all'
     //      })
-    //      this.props.filterTasks(event.target.value);
+    //      this.props.filterTasks(this.state.value);
     //    }
     //  }
     // shouldComponentUpdate(selectionActive, value){
@@ -37,12 +32,21 @@ export default class TodoFilter extends React.Component {
 // redering a form which all the navigates
     render() {
         return (
-          <select value={this.state.value} onChange={this.handleChange.bind(this)}>
-            <option value="all">all</option>
-            <option value="complete">complete</option>
-            <option value="incomplete">incomplete</option>
-          </select>
+          <p></p>
         );
     }
 
 }
+
+// handleSelectChange(event) {
+//   event.preventDefault();
+//    this.setState({value: event.target.value});
+//    this.filterTasks(event.target.value);
+//  }
+
+
+// <select value={this.state.value} onChange={this.handleChange.bind(this)}>
+//   <option value="all">all</option>
+//   <option value="complete">complete</option>
+//   <option value="incomplete">incomplete</option>
+// </select>

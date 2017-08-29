@@ -17,8 +17,10 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
+            value:"all",
             todos:[],
             selectState:[],
+            // selectionValue:'all',
             selectionActive:false,
             movedTextId:''
         };
@@ -29,17 +31,22 @@ export default class App extends React.Component {
             <div>
                 <h1>React ToDos App</h1>
                 <TodoFilter filterTasks={this.filterTasks.bind(this)} selectionActive={this.state.selectionActive}></TodoFilter>
+                <select value={this.state.value} onChange={this.handleSelectChange.bind(this)}>
+                  <option value=""></option>
+                  <option value="all">all</option>
+                  <option value="complete">complete</option>
+                  <option value="incomplete">incomplete</option>
+                </select>
                 <TodoFinder findTask={this.findTask.bind(this)}></TodoFinder>
                 <CreateTodo todos={this.state.todos} createTask={this.createTask.bind(this)} />
                 <TodosList
                     todos={this.state.todos}
                     toggleTask={this.toggleTask.bind(this)}
                     saveTask={this.saveTask.bind(this)}
+                    dropBlockOnEdit={this.dropBlockOnEdit.bind(this)}
                     deleteTask={this.deleteTask.bind(this)}
-
                     dragStart={this.dragStart.bind(this)}
                     dragEnd={this.dragEnd.bind(this)}
-
                     dragEnter={this.dragEnter.bind(this)}
                     dragLeave={this.dragLeave.bind(this)}
                     dragOver={this.dragOver}
@@ -49,16 +56,19 @@ export default class App extends React.Component {
         );
     }
 
+    handleSelectChange(event) {
+      event.preventDefault();
+       this.setState({value: event.target.value});
+       this.filterTasks(event.target.value);
+     }
   //fn filtering tasks
     filterTasks(value){
-      console.log('value:',value);
-      console.log('tasksVar:',tasksVar);
+      // console.log('value:',value);
+      // console.log('tasksVar:',tasksVar);
+      _.remove(tasksVar, todo => todo===null);
       this.setState({selectState: tasksVar,});
       if(value==="all"){
-        this.setState({
-          todos: tasksVar,
-          selectionActive:false
-        })
+        this.setState({todos: tasksVar,selectionActive:false})
       } else if (value==="complete"){
         const foundSelectTodos =[];
         for (var i = 0; i < this.state.selectState.length; i++) {
@@ -66,10 +76,7 @@ export default class App extends React.Component {
             foundSelectTodos.push(this.state.selectState[i])
           }
         }
-        this.setState({
-          todos: foundSelectTodos,
-          selectionActive:true
-         });
+        this.setState({todos: foundSelectTodos,selectionActive:true});
       } else if (value==="incomplete"){
         let foundSelectTodos =[];
         for (var i = 0; i < this.state.selectState.length; i++) {
@@ -77,19 +84,16 @@ export default class App extends React.Component {
             foundSelectTodos.push(this.state.selectState[i])
           }
         }
-        this.setState({
-          todos: foundSelectTodos,
-          selectionActive:true
-         });
+        this.setState({todos: foundSelectTodos,selectionActive:true});
       }
     }
 
-    //fn filtering tasks
+    //fn finding task's name
     findTask(value){
-      const emptyArr=[];
+      const foundTodoArr=[];
       const foundTodo = _.find(this.state.todos, todo => todo?todo.task === value:null);
-      emptyArr.push(foundTodo);
-      this.setState({ todos: emptyArr });
+      foundTodoArr.push(foundTodo);
+      this.setState({ todos: foundTodoArr,value:'' });
     }
 
     //rendering initial state of todolist from local storage
@@ -114,28 +118,22 @@ export default class App extends React.Component {
     //enabling moving data
     dragStart(event) {
       // console.log("dragStart:",this.state.selectionActive);
-      // event.preventDefault();
       if(!this.state.selectionActive){
+        // event.dataTransfer.setData("text", event.target.getAttribute('id') );
         const movedTextId = event.target.id;
-        this.setState({
-          movedTextId:movedTextId
-        })
+        this.setState({movedTextId:movedTextId})
         console.log("movedTextId:",movedTextId);
         event.dataTransfer.dropEffect = "move";
-        // event.dataTransfer.setData("text", event.target.getAttribute('id') );
         // console.log( "DragStart id:",event.target.getAttribute('id'));
       } else{
-        console.log("wedijewijwoiej");
-        return null;
+        event.preventDefault();
       }
     }
-
     //hits when you drag over a certian el
     dragEnter(event) {
       console.log( "Enter id:",event.target.parentNode.id);
       event.target.style.backgroundColor = "red";
     }
-
     //hits when you drag off a certian el
     dragLeave(event) {
       console.log( "Leave id:",event.target.parentNode.id);
@@ -147,26 +145,15 @@ export default class App extends React.Component {
       event.preventDefault();
       event.target.style.backgroundColor = "lightGrey";
 
-      // const movedTextId = event.dataTransfer.getData("text");
-      // console.log("movedTextId:",movedTextId);
-      const replacedTextId = event.target.parentNode.id;
-      console.log("replacedTextId:",replacedTextId);
-
-      const foundReplacedTextIndex = _.findIndex(this.state.todos, todo => todo.id == replacedTextId);
-      console.log("foundReplacedTextIndex:",foundReplacedTextIndex);
-      // console.log(this.state.todos[0].id);
-      // console.log(replacedTextId);
-      const foundMovedTextIndex = _.findIndex(this.state.todos, todo => todo?todo.id == this.state.movedTextId:null);
+      const foundReplacedTextIndex = _.findIndex(this.state.todos, todo => todo.id == event.target.parentNode.id);
       console.log("foundReplacedTextIndex:",foundReplacedTextIndex);
 
-      const foundMovedObject = _.find(this.state.todos, todo => todo?todo.id == this.state.movedTextId:null);
-      console.log("foundMovedObject:",foundMovedObject);
-      console.log("3:",this.state.todos);
-      _.remove(this.state.todos, todo => todo?todo.id == this.state.movedTextId:null);
-
+      const foundMovedObject = _.find(this.state.todos, todo => todo.id == this.state.movedTextId);
+      // console.log("foundMovedObject:",foundMovedObject);
+      _.remove(this.state.todos, todo => todo.id == this.state.movedTextId);
       this.state.todos.splice(foundReplacedTextIndex, 0, foundMovedObject);
-      console.log("4:",this.state.todos);
-      // this.state.todos.splice(movedTextId, 1);
+      // console.log("4:",this.state.todos);
+      _.remove(this.state.todos , todo => todo===null);
       this.setState({ todos: this.state.todos });
       this.updateLocalStorage(this.state.todos);
     }
@@ -176,59 +163,51 @@ export default class App extends React.Component {
     }
     //function which deels with marking if a certain item on a list is completed or not
     toggleTask(task) {
-      this.setState({selectState: tasksVar,});
-      const foundTodo = _.find(this.state.selectState, todo => todo?todo.task === task:null);
+      this.state.todos=tasksVar;
+      const foundTodo = _.find(this.state.todos, todo => todo?todo.task === task:null);
+      const sendValueToFilter = foundTodo.isCompleted===true?"complete":"incomplete";
       foundTodo.isCompleted = !foundTodo.isCompleted;
-      this.setState({ todos: this.state.selectState });
+      // _.remove(this.state.todos , todo => todo===null);
+      this.setState({ todos: this.state.todos });
       this.updateLocalStorage(this.state.todos);
+      this.filterTasks(sendValueToFilter);
     }
     //function which deels with creating a new element on the list
     createTask(task) {
-      this.setState({
-        selectState: tasksVar,
-        selectionActive: false
-      });
-      var newId;
-      console.log("this.state.selectState.length:",this.state.selectState.length);
-      if(this.state.selectState.length===0){
-        newId = 1;
-      }else{
-        console.log("this.state.selectState[i]:",this.state.selectState[0].id);
-        for(var i = 0; i <= this.state.selectState.length; i++) {
-          if(false===this.state.selectState[i].id){
-            console.log("this.state.selectState:",this.state.selectState[i].id);
-            console.log("i:",i);
-            return newId = i+2;
-          // return newId;
-         };
-        }
-      }
-
-          // console.log(arrLength);
-      console.log("newId:",newId);
-      this.state.selectState.unshift({
+      // this.setState({selectState: tasksVar,});
+      this.state.todos=tasksVar;
+      //settles unique id nomber
+      const newId = new Date().getTime().toString();
+      // console.log("newId:",newId);
+      this.state.todos.unshift({
           task,
           isCompleted: false,
           id: newId,
-
       });
-      this.setState({ todos: this.state.selectState });
+      // _.remove(this.state.todos , todo => todo===null);
+      this.setState({todos: this.state.todos,value:'all',selectionActive: false });
+        // console.log('all',this.state.value);
       this.updateLocalStorage(this.state.todos);
-      console.log("1:",this.state.todos);
+      // console.log("1:",this.state.todos);
+    }
+    dropBlockOnEdit(value){
+      this.setState({ selectionActive: value });
     }
     //function which deels with saving changes to the already existing element
     saveTask(oldTask, newTask) {
-        this.setState({selectState: tasksVar,});
-        const foundTodo = _.find(this.state.selectState, todo => todo?todo.task === oldTask:null);
+        this.state.todos=tasksVar;
+        const foundTodo = _.find(this.state.todos, todo => todo?todo.task === oldTask:null);
         foundTodo.task = newTask;
-        this.setState({ todos: this.state.selectState });
+        // _.remove(this.state.todos , todo => todo===null);
+        this.setState({ todos: this.state.todos,selectionActive: false });
         this.updateLocalStorage(this.state.todos);
     }
     //function which deels with removing a task
     deleteTask(taskToDelete) {
-        this.setState({selectState: tasksVar,});
-        _.remove(this.state.selectState, todo => todo?todo.task === taskToDelete:null);
-        this.setState({ todos: this.state.selectState });
+        this.state.todos=tasksVar;
+        _.remove(this.state.todos, todo => todo.task === taskToDelete);
+        // _.remove(this.state.todos, todo => todo===null);
+        this.setState({ todos: this.state.todos});
         this.updateLocalStorage(this.state.todos);
     }
 }

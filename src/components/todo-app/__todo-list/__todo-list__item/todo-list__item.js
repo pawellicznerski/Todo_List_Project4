@@ -82,11 +82,13 @@ export default class TodosListItem extends React.Component {
   // fn which deals with editing text
     onEditClick(e) {
       e.preventDefault();
-        this.setState({ isEditing: true });
+      this.props.dropBlockOnEdit(true);
+      this.setState({ isEditing: true });
     }
     // fn which deals with canceling the editing mode
     onCancelClick() {
         this.setState({ isEditing: false });
+        this.props.dropBlockOnEdit(false);
     }
     // fn which deals with saving the editing mode. The fn triggers fn saveTask() recived in props from todo-app
     onSaveClick(event) {
