@@ -1,0 +1,11 @@
+.header__filters__el__search{
+  margin-right: 5vw;
+  height: 30px;
+  border: 1px solid blue;
+  &__input{
+    width: 70%
+  }
+  &__button{
+    width: 30%
+  }
+}

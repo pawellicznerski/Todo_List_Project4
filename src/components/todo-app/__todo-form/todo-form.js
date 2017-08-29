@@ -21,9 +21,9 @@ export default class CreateTodo extends React.Component {
 // redering a form which all the navigates
     render() {
         return (
-            <form onSubmit={this.handleCreate.bind(this)}>
-                <input type="text" placeholder="What do I need to do?" value={this.state.value} onChange={this.handleChange.bind(this)} />
-                <button>Create</button>
+            <form  className="header__filters__el header__filters__el__search" onSubmit={this.handleCreate.bind(this)}>
+                <input className="header__filters__el__search__input" type="text" placeholder="What do I need to do?" value={this.state.value} onChange={this.handleChange.bind(this)} />
+                <button className="header__filters__el__search__button">Create</button>
                 {this.renderError()}
             </form>
         );

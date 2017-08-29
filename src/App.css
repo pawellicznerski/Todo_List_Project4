@@ -1,3 +1,12 @@
+.header__filters__el__search {
+  margin-right: 5vw;
+  height: 30px;
+  border: 1px solid blue; }
+  .header__filters__el__search__input {
+    width: 70%; }
+  .header__filters__el__search__button {
+    width: 30%; }
+
 * {
   background-color: white;
   padding: 0px;
@@ -25,7 +34,7 @@
   padding: 8px;
   font-size: 18px; }
 
-.header .header__logo {
+.header__logo {
   font-family: 'Pacifico', cursive;
   width: 100vw;
   display: flex;
@@ -33,3 +42,16 @@
   align-items: center;
   height: 80px;
   font-size: 40px; }
+
+.header .header__filters {
+  width: 100vw;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red; }
+  .header .header__filters__el {
+    width: 45vw; }
+    .header .header__filters__el__select {
+      margin-right: 5vw;
+      height: 30px; }

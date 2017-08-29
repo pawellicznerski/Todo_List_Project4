@@ -31,20 +31,24 @@ export default class App extends React.Component {
             <div>
                 <header className="header">
                   <div className="header__logo">Your todo list...</div>
-                  <TodoFilter filterTasks={this.filterTasks.bind(this)} selectionActive={this.state.selectionActive}></TodoFilter>
-                  <TodoFinder findTask={this.findTask.bind(this)}></TodoFinder>
-                  <select value={this.state.value} onChange={this.handleSelectChange.bind(this)}>
-                    <option value=""></option>
-                    <option value="all">all</option>
-                    <option value="complete">complete</option>
-                    <option value="incomplete">incomplete</option>
-                  </select>
+                  <div className="header__filters">
+                    <TodoFinder findTask={this.findTask.bind(this)}></TodoFinder>
+                    <select className="header__filters__el header__filters__el__select" value={this.state.value} onChange={this.handleSelectChange.bind(this)}>
+                      <option className="header__filters__el__select__item" value=""></option>
+                      <option className="header__filters__el__select__item" value="all">all</option>
+                      <option className="header__filters__el__select__item" value="complete">complete</option>
+                      <option className="header__filters__el__select__item" value="incomplete">incomplete</option>
+                    </select>
+                  </div>
                 </header>
+
                 <CreateTodo
                   todos={this.state.todos}
                   createTask={this.createTask.bind(this)}
                 />
+
                 {this.renderError()}
+
                 <TodosList
                   todos={this.state.todos}
                   toggleTask={this.toggleTask.bind(this)}
@@ -58,6 +62,7 @@ export default class App extends React.Component {
                   dragOver={this.dragOver}
                   dragDrop={this.dragDrop.bind(this)}
                 />
+
             </div>
         );
     }
