@@ -31,23 +31,49 @@
 }
 .header{
   &__logo{
-    font-family: 'Pacifico', cursive;
-    background-color: rgba(247,78,23,1);
-    color: rgba(255,255,255,1);
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80px;
-    font-size: 40px;
+    background-color: rgba(247,78,23,1);
+    &__menu-button{
+      // border: 1px solid green;
+      border: 0;
+      width:15vw;
+      height: 75px;
+      background-color: rgba(247,78,23,1);
+      background-image: url("./components/todo-app//header__logo__meanu-button_icon.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      cursor: pointer;
+      &:hover{
+        color: rgba(97,170,25,1);
+      }
+    }
+    &__text{
+      text-align: center;
+      vertical-align: middle;
+      padding-right: 10%;
+      // border: 1px solid blue;
+      width:85vw;
+      background-color: rgba(247,78,23,1);
+      font-family: 'Pacifico', cursive;
+      color: rgba(255,255,255,1);
+      font-size: 33px;
+    }
   }
   .header__filters{
-    width: 100vw;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid red;
+    display: none;
+    &_visible{
+      width: 100vw;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid red;
+    }
     &__el{
       width:45vw;
       &__select{
