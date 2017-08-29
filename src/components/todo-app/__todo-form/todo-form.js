@@ -14,7 +14,6 @@ export default class CreateTodo extends React.Component {
 //function which renders error where the form is filled incorrectly
     renderError() {
         if (!this.state.error) { return null; }
-
         return <div className="main__todo-creator__error">{this.state.error}</div>;
     }
 

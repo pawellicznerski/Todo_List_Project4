@@ -23,7 +23,7 @@ export default class App extends React.Component {
             error:null,
             selectionActive:false,
             movedTextId:'',
-            menuActive: false
+            menuActive: true
         };
     }
 
@@ -31,8 +31,8 @@ export default class App extends React.Component {
         return (
             <div>
                 <header className="header">
-                  <div className="header__logo"><button className="header__logo__menu-button" onClick={this.toggleFilterMenu}></button><p className="header__logo__text">Your todo list...</p></div>
-                  <div className={this.state.menuActive?"header__filters_visible":'header__filters'}>
+                  <div className="header__logo"><button className="header__logo__menu-button" onClick={this.toggleFilterMenu.bind(this)}></button><p className="header__logo__text">Your todo list...</p></div>
+                  <div className={this.state.menuActive?"header__filters header__filters_visible":'header__filters header__filters_hidden'}>
                     <TodoFinder findTask={this.findTask.bind(this)}></TodoFinder>
                     <select className="header__filters__el header__filters__el__select" value={this.state.value} onChange={this.handleSelectChange.bind(this)}>
                       <option className="header__filters__el__select__item" value=""></option>
@@ -68,9 +68,9 @@ export default class App extends React.Component {
     }
     toggleFilterMenu(e){
       e.preventDefault();
-      // this.state.menuActive = !this.state.menuActive;
       this.setState({
-        menuActive:!this.state.menuActive,
+        menuActive: !this.state.menuActive
+
       });
     }
 
