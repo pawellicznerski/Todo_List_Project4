@@ -1,5 +1,8 @@
 *{
   background-color: rgba(255,255,255,1);
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
 .objects {
     display:inline-block;
@@ -21,4 +24,15 @@
     height: 200px;
     padding: 8px;
     font-size: 18px;
+}
+.header{
+  .header__logo{
+    font-family: 'Pacifico', cursive;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    font-size: 40px;
+  }
 }

@@ -20,7 +20,7 @@ export default class App extends React.Component {
             value:"all",
             todos:[],
             selectState:[],
-            // selectionValue:'all',
+            error:null,
             selectionActive:false,
             movedTextId:''
         };
@@ -29,28 +29,34 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
-                <h1>React ToDos App</h1>
-                <TodoFilter filterTasks={this.filterTasks.bind(this)} selectionActive={this.state.selectionActive}></TodoFilter>
-                <select value={this.state.value} onChange={this.handleSelectChange.bind(this)}>
-                  <option value=""></option>
-                  <option value="all">all</option>
-                  <option value="complete">complete</option>
-                  <option value="incomplete">incomplete</option>
-                </select>
-                <TodoFinder findTask={this.findTask.bind(this)}></TodoFinder>
-                <CreateTodo todos={this.state.todos} createTask={this.createTask.bind(this)} />
+                <header className="header">
+                  <div className="header__logo">Your todo list...</div>
+                  <TodoFilter filterTasks={this.filterTasks.bind(this)} selectionActive={this.state.selectionActive}></TodoFilter>
+                  <TodoFinder findTask={this.findTask.bind(this)}></TodoFinder>
+                  <select value={this.state.value} onChange={this.handleSelectChange.bind(this)}>
+                    <option value=""></option>
+                    <option value="all">all</option>
+                    <option value="complete">complete</option>
+                    <option value="incomplete">incomplete</option>
+                  </select>
+                </header>
+                <CreateTodo
+                  todos={this.state.todos}
+                  createTask={this.createTask.bind(this)}
+                />
+                {this.renderError()}
                 <TodosList
-                    todos={this.state.todos}
-                    toggleTask={this.toggleTask.bind(this)}
-                    saveTask={this.saveTask.bind(this)}
-                    dropBlockOnEdit={this.dropBlockOnEdit.bind(this)}
-                    deleteTask={this.deleteTask.bind(this)}
-                    dragStart={this.dragStart.bind(this)}
-                    dragEnd={this.dragEnd.bind(this)}
-                    dragEnter={this.dragEnter.bind(this)}
-                    dragLeave={this.dragLeave.bind(this)}
-                    dragOver={this.dragOver}
-                    dragDrop={this.dragDrop.bind(this)}
+                  todos={this.state.todos}
+                  toggleTask={this.toggleTask.bind(this)}
+                  saveTask={this.saveTask.bind(this)}
+                  dropBlockOnEdit={this.dropBlockOnEdit.bind(this)}
+                  deleteTask={this.deleteTask.bind(this)}
+                  dragStart={this.dragStart.bind(this)}
+                  dragEnd={this.dragEnd.bind(this)}
+                  dragEnter={this.dragEnter.bind(this)}
+                  dragLeave={this.dragLeave.bind(this)}
+                  dragOver={this.dragOver}
+                  dragDrop={this.dragDrop.bind(this)}
                 />
             </div>
         );
@@ -172,8 +178,14 @@ export default class App extends React.Component {
       this.updateLocalStorage(this.state.todos);
       this.filterTasks(sendValueToFilter);
     }
+    //function which renders error where the form is filled incorrectly
+    renderError() {
+        if (!this.state.error) { return null; }
+        return <div style={{ color: 'red' }}>{this.state.error}</div>;
+    }
     //function which deels with creating a new element on the list
     createTask(task) {
+      if(!this.state.selectionActive){
       // this.setState({selectState: tasksVar,});
       this.state.todos=tasksVar;
       //settles unique id nomber
@@ -189,8 +201,11 @@ export default class App extends React.Component {
         // console.log('all',this.state.value);
       this.updateLocalStorage(this.state.todos);
       // console.log("1:",this.state.todos);
+      } else {
+        this.setState({todos: this.state.todos,value:'all',selectionActive: false,error:"Complete editing item"});
+      }
     }
-    dropBlockOnEdit(value){
+    dropBlockOnEdit(value,value2){
       this.setState({ selectionActive: value });
     }
     //function which deels with saving changes to the already existing element
@@ -199,7 +214,7 @@ export default class App extends React.Component {
         const foundTodo = _.find(this.state.todos, todo => todo?todo.task === oldTask:null);
         foundTodo.task = newTask;
         // _.remove(this.state.todos , todo => todo===null);
-        this.setState({ todos: this.state.todos,selectionActive: false });
+        this.setState({ todos: this.state.todos,selectionActive: false,error:"" });
         this.updateLocalStorage(this.state.todos);
     }
     //function which deels with removing a task
