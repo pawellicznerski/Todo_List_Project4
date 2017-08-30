@@ -45,7 +45,7 @@ export default class App extends React.Component {
                       <option className="header__filters__el__select__item" value="incomplete">incomplete</option>
                     </select>
                   </div>
-                  {this.renderHeaderError()}
+                  {this.renderError2()}
                 </header>
                 <main className="main">
                   <CreateTodo
@@ -74,8 +74,8 @@ export default class App extends React.Component {
     toggleFilterMenu(e){
       e.preventDefault();
       this.setState({
-        menuActive: !this.state.menuActive
-
+        menuActive: !this.state.menuActive,
+        errortext:''
       });
     }
 
@@ -116,7 +116,7 @@ export default class App extends React.Component {
       const foundTodoArr=[];
       const foundTodo = _.find(this.state.todos, todo => todo?todo.task === value:null);
       foundTodoArr.push(foundTodo);
-      this.setState({ todos: foundTodoArr,value:'' });
+      this.setState({ todos: foundTodoArr,value:'',errortext: '' });
     }
 
     //rendering initial state of todolist from local storage
@@ -201,17 +201,18 @@ export default class App extends React.Component {
 
     renderHeaderError(text){
       console.log("wywołana renderHeaderError:",text);
-      if (!text) { console.log("if renderHeaderError: Bład",);return null; }else{
-        console.log("if renderHeaderError: ok",);
-        this.setState({ errortext: text });
+      if(!text){ console.log("if renderHeaderError: Bład",);return null; this.setState({ errortext: '' })}else{this.setState({ errortext: text })}
+    }
+    renderError2() {
+        if (!this.state.errortext) { return null; }
         return <div className="main__todo-creator__error">{this.state.errortext}</div>;
-      }
     }
     //function which renders error where the form is filled incorrectly
     renderError() {
         if (!this.state.error) { return null; }
         return <div className="main__todo-creator__error">{this.state.error}</div>;
     }
+
     //function which deels with creating a new element on the list
     createTask(task) {
       if(!this.state.selectionActive){
