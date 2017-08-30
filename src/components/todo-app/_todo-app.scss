@@ -56,16 +56,38 @@
         background-color: rgba(255,98,43,1);
       }
       &__text{
-        text-align: center;
-        vertical-align: middle;
-        padding-right: 10%;
-        // border: 1px solid blue;
         width:85vw;
         background-color: rgba(247,78,23,1);
-        font-family: 'Pacifico', cursive;
-        color: rgba(255,255,255,1);
-        font-size: 33px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-right: 8%;
+        &__words{
+          text-align: center;
+          vertical-align: middle;
+          background-color: rgba(247,78,23,1);
+          // padding-right: 10%;
+          // border: 1px solid blue;
+          font-family: 'Pacifico', cursive;
+          color: rgba(255,255,255,1);
+          font-size: 33px;
+        }
+        &__dots {
+          background-color: rgba(247,78,23,1);
+          margin-top: 4px;
+          width: 25px;
+          height: 25px;
+          background-image: url('./components/todo-app/_todo-app__images/header__logo__menu-text_dots.svg');
+          // background-image: url('./components/todo-app/_todo-app__images/1.svg');
+          // background-position: center;
+          // background-repeat: no-repeat;
+          // background-size: cover;
+          animation: play 3.1s steps(4) infinite;
+        }
       }
+    }
+    @keyframes play {
+      100% { background-position: -100px; }
     }
     @keyframes FadeIn {
      0% {

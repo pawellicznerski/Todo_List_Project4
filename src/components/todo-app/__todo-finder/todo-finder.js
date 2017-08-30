@@ -37,22 +37,27 @@ export default class TodoFinder extends React.Component {
 
     handleSearch(event) {
       event.preventDefault();
-      const task = this.state.value;
-      const validateInput = this.validateInput(task);
+      // console.log(this.props.menuActive);
+      if(this.props.menuActive){
+        return null;
+      } else {
+        const task = this.state.value;
+        const validateInput = this.validateInput(task);
 
-      if (validateInput) {
-        this.setState({ error: validateInput });
-        this.renderError(validateInput);
-        return;
+        if (validateInput) {
+          this.setState({ error: validateInput });
+          this.renderError(validateInput);
+          return;
+        }
+
+        this.setState({
+          error: null,
+          value:''
+        });
+
+        this.props.findTask(task);
+        // console.log(event.target.value);
       }
-
-      this.setState({
-        error: null,
-        value:''
-      });
-
-      this.props.findTask(task);
-      // console.log(event.target.value);
     }
 
     // triggered by handleCreate fn, it aims at providing error text if it is necessary

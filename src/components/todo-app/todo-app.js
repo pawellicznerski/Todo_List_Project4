@@ -39,12 +39,16 @@ export default class App extends React.Component {
                       className={this.state.menuActive?"header__logo__menu-button header__logo__menu-button_active" :"header__logo__menu-button" }
                       onClick={this.toggleFilterMenu.bind(this)}>
                     </button>
-                    <p className="header__logo__text">Your todo list...</p>
+                    <div className="header__logo__text">
+                      <p className="header__logo__text__words">Your todo list</p>
+                      <div className="header__logo__text__dots"></div>
+                    </div>
                   </div>
                   <div className={this.state.menuActive?"header__filters header__filters_visible":'header__filters header__filters_hidden'}>
                     <TodoFinder
                       findTask={this.findTask.bind(this)}
                       renderHeaderError={this.renderHeaderError.bind(this)}
+                      menuActive={this.state.menuActive}
                     />
                   <select
                     disabled={this.state.menuActive?'':"true"}

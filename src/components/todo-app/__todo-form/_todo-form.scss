@@ -12,21 +12,29 @@
     align-items: center;
     background-color: rgba(97,170,25,1);
     &__form{
-      background-color: rgba(97,190,25,1);
+      background-color: rgba(130,230,65,1);
       width: 80%;
       border-radius: 15px 20px 20px 15px;
       border: 0;
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      // &:focus{
+      //   background-color: rgba(150,240,75,1);
+      // }
       &__input{
+        border-radius:20px 0 0 20px;
         outline: none;
         border: 0;
-        background-color: rgba(97,190,25,1);
-        height: 30px;
-        width: 60%;
+        background-color: rgba(130,230,65,1);
+        height: 40px;
+        width: 95%;
         color:  rgba(255,255,255,1);
         font-size: 19px;
+        padding-left: 15px;
+        &:focus{
+          background-color: rgba(150,240,75,1);
+        }
         &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
           color: rgba(255,255,255,0.7);
           text-align: center;
