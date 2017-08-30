@@ -23,14 +23,15 @@ export default class App extends React.Component {
             error:null,
             selectionActive:false,
             movedTextId:'',
-            menuActive: true,
+            menuActive: false,
             errortext:''
         };
     }
 
     render() {
         return (
-            <div>
+            <div className="todo-app" >
+              <div className="todo-app__content">
                 <header className="header">
                   <div className="header__logo"><button className="header__logo__menu-button" onClick={this.toggleFilterMenu.bind(this)}></button><p className="header__logo__text">Your todo list...</p></div>
                   <div className={this.state.menuActive?"header__filters header__filters_visible":'header__filters header__filters_hidden'}>
@@ -67,6 +68,7 @@ export default class App extends React.Component {
                     dragDrop={this.dragDrop.bind(this)}
                   />
                 </main>
+              </div>
             </div>
 
         );

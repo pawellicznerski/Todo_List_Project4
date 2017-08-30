@@ -15,7 +15,7 @@ export default class TodoFinder extends React.Component {
     render() {
         return (
           <form  className="header__filters__el header__filters__el__search"  onSubmit={this.handleSearch.bind(this)}>
-              <input className="header__filters__el__search__input"  type="text" placeholder="Search for..." value={this.state.value} onChange={this.handleChange.bind(this)} />
+              <input className="header__filters__el__search__input"  type="text" placeholder="search for..." value={this.state.value} onChange={this.handleChange.bind(this)} />
               <button className="header__filters__el__search__button"></button>
           </form>
         );
