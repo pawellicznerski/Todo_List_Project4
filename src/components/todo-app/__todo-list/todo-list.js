@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React from 'react';
-import TodosListHeader from './__todo-list__header/todo-list__header.js';
 import TodosListItem from './__todo-list__item/todo-list__item.js';
 
 export default class TodosList extends React.Component {
@@ -12,9 +11,8 @@ export default class TodosList extends React.Component {
 
     render() {
         return (
-            <div>
-                <TodosListHeader />
-                <ul>
+            <div className="todo-app__main__todo-list">
+                <ul className="todo-app__main__todo-list__container">
                     {this.renderItems()}
                 </ul>
             </div>

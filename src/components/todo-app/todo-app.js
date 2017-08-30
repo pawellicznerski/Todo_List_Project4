@@ -23,7 +23,7 @@ export default class App extends React.Component {
             error:null,
             selectionActive:false,
             movedTextId:'',
-            menuActive: false,
+            menuActive: true,
             errortext:''
         };
     }

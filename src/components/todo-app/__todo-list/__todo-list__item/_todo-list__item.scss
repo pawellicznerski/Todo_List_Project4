@@ -1,0 +1,32 @@
+.todo-app__main__todo-list__item{
+  background-color: rgba(230,230,230,1);
+  width: 100%;
+  min-height: 40px;
+  border-radius: 15px;
+  border: 0;
+  display: flex;
+  margin-top: 10px;
+  // justify-content: flex-end;
+  align-items: center;
+}
+
+
+
+
+    // &__button{
+    //   padding-top: 2px;
+    //   text-align: center;
+    //   line-height: 0;
+    //   vertical-align: middle;
+    //   border: 0 solid rgba(247,78,23,1);
+    //   // background-color: rgba(247,78,23,1);
+    //   background-color: rgba(255,255,255,1);
+    //   color:  rgba(97,170,25,1);
+    //   font-size: 40px;
+    //   font-weight: bold;
+    //   border-radius: 20px;
+    //   height: 40px;
+    //   width: 40px;
+    //   cursor: pointer;
+    //   outline: none;
+    // }

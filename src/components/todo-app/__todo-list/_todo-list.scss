@@ -1,0 +1,45 @@
+@import "./../_todo-app__base/media-query-mixins";
+@import "./__todo-list__item/todo-list__item";
+
+.todo-app__main__todo-list{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  @include tablet{
+    width: 700px;
+   };
+  &__container{
+    width: 80%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    // @include tablet{
+    //
+    //  };
+  }
+}
+
+
+
+
+// .objects {
+//     display:inline-block;
+//     background-color: #F234FF;
+//     border: #DFBC6A 1px solid;
+//     width: 50px;
+//     height: 50px;
+//     margin: 10px;
+//     padding: 8px;
+//     font-size: 18px;
+//     text-align: center;
+//     box-shadow: 2px 2px 2px #999;
+//     cursor: move;
+// }
+// #drop_zone {
+//     background-color: #EEE;
+//     border: #999 1px solid;
+//     width: 280px;
+//     height: 200px;
+//     padding: 8px;
+//     font-size: 18px;
+// }

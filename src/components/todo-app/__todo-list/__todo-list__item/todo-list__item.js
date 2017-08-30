@@ -16,12 +16,11 @@ export default class TodosListItem extends React.Component {
         const taskStyle = {
             color: isCompleted ? 'green' : 'red',
             cursor: 'pointer',
-            backgroundColor:"lightGrey"
         };
 
         if (this.state.isEditing) {
             return (
-                <div style={{backgroundColor:"lightGrey"}}>
+                <div>
                     <form onSubmit={this.onSaveClick.bind(this)}>
                         <input type="text" value={this.state.value} onChange={this.onChange.bind(this)} />
                     </form>
@@ -45,7 +44,7 @@ export default class TodosListItem extends React.Component {
     renderActionsSection() {
         if (this.state.isEditing) {
             return (
-                <div style={{backgroundColor:"lightGrey"}}>
+                <div>
                     <button onClick={this.onSaveClick.bind(this)}>Save</button>
                     <button onClick={this.onCancelClick.bind(this)}>Cancel</button>
                 </div>
@@ -53,7 +52,7 @@ export default class TodosListItem extends React.Component {
         }
 
         return (
-            <div style={{backgroundColor:"lightGrey"}}>
+            <div>
                 <button onClick={this.onEditClick.bind(this)}>Edit</button>
                 <button onClick={this.props.deleteTask.bind(this, this.props.task)}>Delete</button>
             </div>
@@ -63,8 +62,9 @@ export default class TodosListItem extends React.Component {
     render() {
         return (
             <li
+              className="todo-app__main__todo-list__item"
               id={this.props.id}
-              style={{marginTop: "10px",listStyleType:'none'}}
+
               draggable="true"
               onDragStart={this.props.dragStart.bind(this)}
               onDragEnd={this.props.dragEnd.bind(this)}
