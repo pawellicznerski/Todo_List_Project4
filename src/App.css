@@ -50,13 +50,65 @@
         font-weight: bold;
         border-radius: 20px;
         height: 40px;
-        width: 40px; }
+        width: 40px;
+        cursor: pointer;
+        outline: none; }
   .main__todo-creator__error {
     width: 100vw;
     text-align: center;
     vertical-align: middle;
     background-color: #f74e17;
     color: white; }
+
+.header__filters__el__search {
+  background-color: white;
+  height: 30px;
+  width: 30vw;
+  border-radius: 15px;
+  border: 1px solid #61be19;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+  .header__filters__el__search__input {
+    outline: none;
+    border: 0;
+    background-color: whitesmoke;
+    width: 70%; }
+    .header__filters__el__search__input::-webkit-input-placeholder {
+      /* Chrome/Opera/Safari */
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center; }
+    .header__filters__el__search__input::-moz-placeholder {
+      /* Firefox 19+ */
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center; }
+    .header__filters__el__search__input::-ms-input-placeholder {
+      /* IE 10+ */
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center; }
+    .header__filters__el__search__input::-moz-placeholder {
+      /* Firefox 18- */
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center; }
+  .header__filters__el__search__button {
+    padding-top: 2px;
+    text-align: center;
+    line-height: 0;
+    vertical-align: middle;
+    border: 0 solid #f74e17;
+    background-image: url("./components/todo-app/__todo-finder/todo-app__todo-finder_image_magnifyingGlass.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: #61aa19;
+    color: #61aa19;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 0 15px 15px 0;
+    height: 28px;
+    width: 40px;
+    cursor: pointer;
+    outline: none; }
 
 * {
   background-color: white;
@@ -98,7 +150,7 @@
     width: 15vw;
     height: 75px;
     background-color: #f74e17;
-    background-image: url("./components/todo-app//header__logo__meanu-button_icon.svg");
+    background-image: url("./components/todo-app/_todo-app__images/header__logo__meanu-button_icon.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

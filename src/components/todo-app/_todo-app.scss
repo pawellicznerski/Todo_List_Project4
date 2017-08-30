@@ -1,13 +1,9 @@
 @import "./__todo-form/todo-form";
 @import "./__todo-finder/todo-finder";
 @import "./__todo-list/todo-list";
+@import "./_todo-app_basic-styles/todo-app_basic-styles";
 
-*{
-  background-color: rgba(255,255,255,1);
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-}
+
 .objects {
     display:inline-block;
     background-color: #F234FF;
@@ -43,7 +39,7 @@
       width:15vw;
       height: 75px;
       background-color: rgba(247,78,23,1);
-      background-image: url("./components/todo-app//header__logo__meanu-button_icon.svg");
+      background-image: url("./components/todo-app/_todo-app__images/header__logo__meanu-button_icon.svg");
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -91,7 +87,7 @@
         }
       }
     }
-  }
+  }//end og header filters
 }
 
 

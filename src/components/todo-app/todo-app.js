@@ -23,7 +23,8 @@ export default class App extends React.Component {
             error:null,
             selectionActive:false,
             movedTextId:'',
-            menuActive: true
+            menuActive: true,
+            errortext:''
         };
     }
 
@@ -33,7 +34,10 @@ export default class App extends React.Component {
                 <header className="header">
                   <div className="header__logo"><button className="header__logo__menu-button" onClick={this.toggleFilterMenu.bind(this)}></button><p className="header__logo__text">Your todo list...</p></div>
                   <div className={this.state.menuActive?"header__filters header__filters_visible":'header__filters header__filters_hidden'}>
-                    <TodoFinder findTask={this.findTask.bind(this)}></TodoFinder>
+                    <TodoFinder
+                      findTask={this.findTask.bind(this)}
+                      renderHeaderError={this.renderHeaderError.bind(this)}
+                    />
                     <select className="header__filters__el header__filters__el__select" value={this.state.value} onChange={this.handleSelectChange.bind(this)}>
                       <option className="header__filters__el__select__item" value=""></option>
                       <option className="header__filters__el__select__item" value="all">all</option>
@@ -41,6 +45,7 @@ export default class App extends React.Component {
                       <option className="header__filters__el__select__item" value="incomplete">incomplete</option>
                     </select>
                   </div>
+                  {this.renderHeaderError()}
                 </header>
                 <main className="main">
                   <CreateTodo
@@ -191,6 +196,15 @@ export default class App extends React.Component {
       this.updateLocalStorage(this.state.todos);
       if(this.state.selectionActive){
         this.filterTasks(sendValueToFilter);
+      }
+    }
+
+    renderHeaderError(text){
+      console.log("wywołana renderHeaderError:",text);
+      if (!text) { console.log("if renderHeaderError: Bład",);return null; }else{
+        console.log("if renderHeaderError: ok",);
+        this.setState({ errortext: text });
+        return <div className="main__todo-creator__error">{this.state.errortext}</div>;
       }
     }
     //function which renders error where the form is filled incorrectly

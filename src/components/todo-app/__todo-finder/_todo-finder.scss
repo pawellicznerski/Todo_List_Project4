@@ -1,0 +1,144 @@
+
+.header__filters__el{
+  &__search{
+    // background-color: rgba(97,190,25,1);
+    background-color: rgba(255,255,255,1);
+    height: 30px;
+    width: 30vw;
+    border-radius:15px;
+    border: 1px solid rgba(97,190,25,1);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    &__input{
+      outline: none;
+      border: 0;
+      background-color: rgba(245,245,245,1);
+      // height: 30px;
+      width: 70%;
+      // color:  rgba(255,255,255,1);
+      // font-size: 17px;
+      &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: rgba(255,255,255,0.7);
+        text-align: center;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: rgba(255,255,255,0.7);
+        text-align: center;
+      }
+      &::-ms-input-placeholder { /* IE 10+ */
+        color: rgba(255,255,255,0.7);
+        text-align: center;
+      }
+      &::-moz-placeholder { /* Firefox 18- */
+        color: rgba(255,255,255,0.7);
+        text-align: center;
+      }
+    }
+    &__button{
+      padding-top: 2px;
+      text-align: center;
+      line-height: 0;
+      vertical-align: middle;
+      border: 0 solid rgba(247,78,23,1);
+      // background-color: rgba(247,78,23,1);
+      background-image: url("./components/todo-app/__todo-finder/todo-app__todo-finder_image_magnifyingGlass.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      // background-color: rgba(255,255,255,1);
+      background-color: rgba(97,170,25,1);
+      color:  rgba(97,170,25,1);
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 0 15px 15px 0;
+      height: 28px;
+      width: 40px;
+      cursor: pointer;
+      outline: none;
+
+    }
+  }
+}
+// &__form{
+//   background-color: rgba(97,190,25,1);
+//   width: 80vw;
+//   border-radius: 15px 20px 20px 15px;
+//   border: 0;
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
+  // &__input{
+  //   outline: none;
+  //   border: 0;
+  //   background-color: rgba(97,190,25,1);
+  //   height: 30px;
+  //   width: 60vw;
+  //   color:  rgba(255,255,255,1);
+  //   font-size: 17px;
+  //   &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  //     color: rgba(255,255,255,0.7);
+  //     text-align: center;
+  //   }
+  //   &::-moz-placeholder { /* Firefox 19+ */
+  //     color: rgba(255,255,255,0.7);
+  //     text-align: center;
+  //   }
+  //   &::-ms-input-placeholder { /* IE 10+ */
+  //     color: rgba(255,255,255,0.7);
+  //     text-align: center;
+  //   }
+  //   &::-moz-placeholder { /* Firefox 18- */
+  //     color: rgba(255,255,255,0.7);
+  //     text-align: center;
+  //   }
+
+//   }
+//   &__button{
+//     padding-top: 2px;
+//     text-align: center;
+//     line-height: 0;
+//     vertical-align: middle;
+//     border: 0 solid rgba(247,78,23,1);
+//     // background-color: rgba(247,78,23,1);
+//     background-color: rgba(255,255,255,1);
+//     color:  rgba(97,170,25,1);
+//     font-size: 40px;
+//     font-weight: bold;
+//     border-radius: 20px;
+//     height: 40px;
+//     width: 40px;
+//   }
+// }
+// }
+
+
+//
+// .header__filters{
+//   width: 100vw;
+//   // border: 1px solid red;
+//   &_hidden{
+//     height: 0;
+//     display: block;
+//     opacity: 0;
+//     animation: FadeOut 0.7s ease-in-out;
+//   }
+//   &_visible{
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 40px;
+//     opacity: 1;
+//     animation: FadeIn 0.8s ease-in-out;
+//   }
+//   &__el{
+//     width:45vw;
+//     &__select{
+//       margin-right: 5vw;
+//       height: 30px;
+//       &__item{
+//
+//       }
+//     }
+//   }
+// }//end og header filters
