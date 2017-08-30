@@ -126,8 +126,7 @@
   align-items: center; }
   .todo-app__main__todo-list__item .todo-app__main__todo-list__item__text-container {
     width: 60%;
-    margin-left: 11px;
-    border: 1px solid purple; }
+    margin-left: 11px; }
     .todo-app__main__todo-list__item .todo-app__main__todo-list__item__text-container .todo-app__main__todo-list__item__text-container__text {
       background-color: white;
       font-size: 15px;
@@ -174,7 +173,7 @@
   width: 100vw;
   display: flex;
   justify-content: center;
-  background-color: #f0f0f5; }
+  background-color: #e6e6e6; }
   @media (min-width: 700px) {
     .todo-app__main__todo-list {
       width: 700px; } }
@@ -183,7 +182,7 @@
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    background-color: #f0f0f5; }
+    background-color: #e6e6e6; }
 
 * {
   background-color: white;
@@ -198,11 +197,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: rgba(247, 78, 23, 0.5); } }
+      background-color: rgba(247, 190, 190, 0.1); } }
   .todo-app__content {
     width: 100%;
     min-height: 900px;
-    background-color: #f0f0f5; }
+    background-color: #e6e6e6; }
     @media (min-width: 700px) {
       .todo-app__content {
         width: 700px; } }
@@ -229,8 +228,11 @@
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer; }
-    .header__logo__menu-button:hover {
-      background-color: #ff622b; }
+    @media (min-width: 700px) {
+      .header__logo__menu-button:hover {
+        background-color: #ff622b; } }
+  .header__logo__menu-button_active {
+    background-color: #ff622b; }
   .header__logo__text {
     text-align: center;
     vertical-align: middle;

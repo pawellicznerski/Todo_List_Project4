@@ -17,13 +17,14 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
+            menuActive: true,
+
             value:"all",
             todos:[],
             selectState:[],
             error:null,
             selectionActive:false,
             movedTextId:'',
-            menuActive: true,
             errortext:''
         };
     }
@@ -33,18 +34,28 @@ export default class App extends React.Component {
             <div className="todo-app" >
               <div className="todo-app__content">
                 <header className="header">
-                  <div className="header__logo"><button className="header__logo__menu-button" onClick={this.toggleFilterMenu.bind(this)}></button><p className="header__logo__text">Your todo list...</p></div>
+                  <div className="header__logo">
+                    <button
+                      className={this.state.menuActive?"header__logo__menu-button header__logo__menu-button_active" :"header__logo__menu-button" }
+                      onClick={this.toggleFilterMenu.bind(this)}>
+                    </button>
+                    <p className="header__logo__text">Your todo list...</p>
+                  </div>
                   <div className={this.state.menuActive?"header__filters header__filters_visible":'header__filters header__filters_hidden'}>
                     <TodoFinder
                       findTask={this.findTask.bind(this)}
                       renderHeaderError={this.renderHeaderError.bind(this)}
                     />
-                    <select className="header__filters__el header__filters__el__select" value={this.state.value} onChange={this.handleSelectChange.bind(this)}>
+                  <select
+                    disabled={this.state.menuActive?'':"true"}
+                    className="header__filters__el header__filters__el__select"
+                    value={this.state.value}
+                    onChange={this.handleSelectChange.bind(this)}>
                       <option className="header__filters__el__select__item" value=""></option>
                       <option className="header__filters__el__select__item" value="all">all</option>
                       <option className="header__filters__el__select__item" value="complete">complete</option>
                       <option className="header__filters__el__select__item" value="incomplete">incomplete</option>
-                    </select>
+                  </select>
                   </div>
                   {this.renderError2()}
                 </header>
@@ -75,50 +86,58 @@ export default class App extends React.Component {
     }
     toggleFilterMenu(e){
       e.preventDefault();
-      this.setState({
-        menuActive: !this.state.menuActive,
-        errortext:''
-      });
+      this.setState({menuActive: !this.state.menuActive,errortext:''});
     }
 
     handleSelectChange(event) {
       event.preventDefault();
-       this.setState({value: event.target.value});
-       this.filterTasks(event.target.value);
+       if(!this.state.menuActive){
+         return null;
+       } else {
+         this.setState({value: event.target.value});
+         this.filterTasks(event.target.value);
+       }//end of blocking filterTask in case menu is closed
      }
+
   //fn filtering tasks
     filterTasks(value){
-      // console.log('value:',value);
-      // console.log('tasksVar:',tasksVar);
-      _.remove(tasksVar, todo => todo===null);
-      this.setState({selectState: tasksVar,});
-      if(value==="all"){
-        this.setState({todos: tasksVar,selectionActive:false})
-      } else if (value==="complete"){
-        const foundSelectTodos =[];
-        for (var i = 0; i < this.state.selectState.length; i++) {
-          if(this.state.selectState[i].isCompleted === true){
-            foundSelectTodos.push(this.state.selectState[i])
+      // if(!this.state.menuActive){
+      //   return null;
+      // } else {
+        _.remove(tasksVar, todo => todo===null);
+        this.setState({selectState: tasksVar,});
+        if(value==="all"){
+          this.setState({todos: tasksVar,selectionActive:false})
+        } else if (value==="complete"){
+          const foundSelectTodos =[];
+          for (var i = 0; i < this.state.selectState.length; i++) {
+            if(this.state.selectState[i].isCompleted === true){
+              foundSelectTodos.push(this.state.selectState[i])
+            }
           }
-        }
-        this.setState({todos: foundSelectTodos,selectionActive:true});
-      } else if (value==="incomplete"){
-        let foundSelectTodos =[];
-        for (var i = 0; i < this.state.selectState.length; i++) {
-          if(this.state.selectState[i].isCompleted === false){
-            foundSelectTodos.push(this.state.selectState[i])
+          this.setState({todos: foundSelectTodos,selectionActive:true});
+        } else if (value==="incomplete"){
+          let foundSelectTodos =[];
+          for (var i = 0; i < this.state.selectState.length; i++) {
+            if(this.state.selectState[i].isCompleted === false){
+              foundSelectTodos.push(this.state.selectState[i])
+            }
           }
+          this.setState({todos: foundSelectTodos,selectionActive:true});
         }
-        this.setState({todos: foundSelectTodos,selectionActive:true});
-      }
-    }
+      // }//end of blocking filterTask in case menu is closed
+    }//end of filterTasks
 
     //fn finding task's name
     findTask(value){
-      const foundTodoArr=[];
-      const foundTodo = _.find(this.state.todos, todo => todo?todo.task === value:null);
-      foundTodoArr.push(foundTodo);
-      this.setState({ todos: foundTodoArr,value:'',errortext: '' });
+      if(!this.state.menuActive){
+        return null;
+      } else {
+        const foundTodoArr=[];
+        const foundTodo = _.find(this.state.todos, todo => todo?todo.task === value:null);
+        foundTodoArr.push(foundTodo);
+        this.setState({ todos: foundTodoArr,value:'',errortext: '' });
+      }//end of blocking findTask in case menu is closed
     }
 
     //rendering initial state of todolist from local storage

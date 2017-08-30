@@ -11,12 +11,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(247,78,23,0.5);
+    background-color: rgba(247,190,190,0.1);
   };
   &__content{
     width: 100%;
     min-height: 900px;
-    background-color: rgba(240,240,245,1);
+    background-color: rgba(230,230,230,1);
 
     @include tablet{
       width: 700px;
@@ -47,8 +47,13 @@
         background-size: contain;
         cursor: pointer;
         &:hover{
-          background-color: rgba(255,98,43,1);
+          @include tablet{
+            background-color: rgba(255,98,43,1);
+          };
         }
+      }
+      &__menu-button_active{
+        background-color: rgba(255,98,43,1);
       }
       &__text{
         text-align: center;

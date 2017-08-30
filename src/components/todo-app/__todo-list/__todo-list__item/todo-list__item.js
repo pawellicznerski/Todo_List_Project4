@@ -129,7 +129,7 @@ export default class TodosListItem extends React.Component {
     onEditClick(e) {
       e.preventDefault();
       this.props.dropBlockOnEdit(true);
-      this.setState({ isEditing: true });
+      this.setState({ isEditing: true, });
     }
     // fn which deals with canceling the editing mode
     onCancelClick() {
