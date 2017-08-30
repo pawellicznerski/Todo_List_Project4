@@ -37,7 +37,7 @@ export default class TodoFinder extends React.Component {
 
     handleSearch(event) {
       event.preventDefault();
-      // console.log(this.props.menuActive);
+      console.log("this.props.menuActive",this.props.menuActive);
       if(this.props.menuActive){
         return null;
       } else {
