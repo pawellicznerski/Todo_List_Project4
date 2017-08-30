@@ -6,33 +6,39 @@ export default class TodosListItem extends React.Component {
 
         this.state = {
             isEditing: false,
-            value:this.props.task
+            value:this.props.task,
         };
     }
 
 // a fn which deals with rendering only text in a task section. there are two versions editable and not editable
     renderTaskSection() {
-        const { task, isCompleted } = this.props;
-        const taskStyle = {
-            color: isCompleted ? 'green' : 'red',
-            cursor: 'pointer',
-        };
+      const { task, isCompleted } = this.props;
 
         if (this.state.isEditing) {
             return (
-                <div>
-                    <form onSubmit={this.onSaveClick.bind(this)}>
-                        <input type="text" value={this.state.value} onChange={this.onChange.bind(this)} />
+                <div className="todo-app__main__todo-list__item__text-container">
+                    <form
+                      className="todo-app__main__todo-list__item__text-container__form"
+                      onSubmit={this.onSaveClick.bind(this)}>
+                        <input
+                          className="todo-app__main__todo-list__item__text-container__form__input"
+                          type="text"
+                          value={this.state.value}
+                          onChange={this.onChange.bind(this)}
+                           />
                     </form>
                 </div>
             );
         }
 
         return (
-            <div style={taskStyle}
-                onClick={this.props.toggleTask.bind(this,task)}
-            >
-                {task}
+            <div className="todo-app__main__todo-list__item__text-container">
+                <p
+                  className={
+                      isCompleted
+                      ?"todo-app__main__todo-list__item__text-container__text todo-app__main__todo-list__item__text-container__text_completed"
+                      :"todo-app__main__todo-list__item__text-container__text todo-app__main__todo-list__item__text-container__text_incompleted"}
+                  >{task}</p>
             </div>
         );
     }
@@ -42,19 +48,59 @@ export default class TodosListItem extends React.Component {
     }
 // a fn which deals with rendering only buttons in a task section. there are two versions save/cancel and edit/delete
     renderActionsSection() {
+      const { task, isCompleted } = this.props;
+
         if (this.state.isEditing) {
             return (
-                <div>
-                    <button onClick={this.onSaveClick.bind(this)}>Save</button>
-                    <button onClick={this.onCancelClick.bind(this)}>Cancel</button>
+                <div className="todo-app__main__todo-list__item__buttons-container">
+                    <button
+                      className=
+                        "todo-app__main__todo-list__item__buttons-container__button
+                        todo-app__main__todo-list__item__buttons-container__button__image
+                        todo-app__main__todo-list__item__buttons-container__button__image_save"
+                      onClick={this.onSaveClick.bind(this)}
+                      ></button>
+                    <button
+                      className=
+                        "todo-app__main__todo-list__item__buttons-container__button
+                        todo-app__main__todo-list__item__buttons-container__button__image
+                        todo-app__main__todo-list__item__buttons-container__button__image_cancel"
+                      onClick={this.onCancelClick.bind(this)}
+                      ></button>
+                    <button
+                      className={
+                        isCompleted
+                        ?"todo-app__main__todo-list__item__buttons-container__button todo-app__main__todo-list__item__buttons-container__button__image             todo-app__main__todo-list__item__buttons-container__button__image_tick_active"
+                        :"todo-app__main__todo-list__item__buttons-container__button todo-app__main__todo-list__item__buttons-container__button__image todo-app__main__todo-list__item__buttons-container__button__image_tick"}
+                        onClick={this.props.toggleTask.bind(this,task)}
+                      ></button>
                 </div>
             );
         }
 
         return (
-            <div>
-                <button onClick={this.onEditClick.bind(this)}>Edit</button>
-                <button onClick={this.props.deleteTask.bind(this, this.props.task)}>Delete</button>
+            <div className="todo-app__main__todo-list__item__buttons-container">
+                <button
+                  className=
+                    "todo-app__main__todo-list__item__buttons-container__button
+                    todo-app__main__todo-list__item__buttons-container__button__image
+                    todo-app__main__todo-list__item__buttons-container__button__image_edit"
+                  onClick={this.onEditClick.bind(this)}
+                  ></button>
+                <button
+                  className=
+                    "todo-app__main__todo-list__item__buttons-container__button
+                    todo-app__main__todo-list__item__buttons-container__button__image
+                    todo-app__main__todo-list__item__buttons-container__button__image_delete"
+                  onClick={this.props.deleteTask.bind(this, this.props.task)}
+                  ></button>
+                <button
+                  className={
+                    isCompleted
+                    ?"todo-app__main__todo-list__item__buttons-container__button todo-app__main__todo-list__item__buttons-container__button__image             todo-app__main__todo-list__item__buttons-container__button__image_tick_active"
+                    :"todo-app__main__todo-list__item__buttons-container__button    todo-app__main__todo-list__item__buttons-container__button__image todo-app__main__todo-list__item__buttons-container__button__image_tick"}
+                    onClick={this.props.toggleTask.bind(this,task)}
+                  ></button>
             </div>
         );
     }

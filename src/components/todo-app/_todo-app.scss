@@ -11,11 +11,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:  rgba(247,190,190,1);
+    background-color: rgba(247,78,23,0.5);
   };
   &__content{
     width: 100%;
     min-height: 900px;
+    background-color: rgba(240,240,245,1);
 
     @include tablet{
       width: 700px;

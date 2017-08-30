@@ -5,6 +5,8 @@
   width: 100vw;
   display: flex;
   justify-content: center;
+  background-color: rgba(240,240,245,1);
+
   @include tablet{
     width: 700px;
    };
@@ -13,6 +15,8 @@
     margin-top: 10px;
     display: flex;
     flex-direction: column;
+    background-color: rgba(240,240,245,1);
+
     // @include tablet{
     //
     //  };
