@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from "lodash";
 
-
 export default class CreateTodo extends React.Component {
     constructor(props) {
         super(props);

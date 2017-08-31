@@ -130,6 +130,7 @@ export default class TodosListItem extends React.Component {
 
     handleOnBlur(e) {
       e.preventDefault();
+      // this.onSaveClick2();
       this.setState({ isEditing: false });
     }
   // fn which deals with editing text
@@ -151,6 +152,13 @@ export default class TodosListItem extends React.Component {
         this.props.saveTask(oldTask, newTask);
         this.setState({ isEditing: false });
     }
+    // onSaveClick2(){
+    //   const oldTask = this.props.task;
+    //   const newTask = this.state.value;
+    //   this.props.saveTask(oldTask, newTask);
+    //   this.setState({ isEditing: false });
+    // };
+
 }
 
 

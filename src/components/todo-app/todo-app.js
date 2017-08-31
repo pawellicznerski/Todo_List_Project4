@@ -18,7 +18,6 @@ export default class App extends React.Component {
 
         this.state = {
             menuActive: false,
-
             value:"all",
             todos:[],
             selectState:[],
@@ -90,6 +89,18 @@ export default class App extends React.Component {
 
         );
     }
+//-------------------------------------------------------------------INITIAL AND UNIVERSAL FUNCTIONS------------------------------------------------------
+    //rendering initial state of todolist from local storage
+    componentDidMount(){
+      console.log(tasksVar);
+      _.remove(tasksVar, todo => todo===null);
+      tasksVar? this.setState({todos: tasksVar,selectState: tasksVar,}) : null;
+    //   console.log(this.state.todos);
+    }
+    //saving data in local storage as a string
+    updateLocalStorage(todos){
+      localStorage.setItem('storedTasks4',JSON.stringify(todos));
+    }
     toggleFilterMenu(e){
       e.preventDefault();
       this.setState({menuActive: !this.state.menuActive,errortext:''});
@@ -100,7 +111,9 @@ export default class App extends React.Component {
          this.setState({value: event.target.value});
          this.filterTasks(event.target.value);
      }
+//-------------------------------------------------------------------------END-----------------------------------------------------------------------
 
+//--------------------------------------------------------------------FILTER AND FINDING FUNCTIONS-----------------------------------------------
   //fn filtering tasks
     filterTasks(value){
         _.remove(tasksVar, todo => todo===null);
@@ -133,20 +146,9 @@ export default class App extends React.Component {
         foundTodoArr.push(foundTodo);
         this.setState({ todos: foundTodoArr,value:'',errortext: '',error:findErrorValue });
     }
+//--------------------------------------------------------------------END----------------------------------------------------------------------
 
-    //rendering initial state of todolist from local storage
-    componentDidMount(){
-      console.log(tasksVar);
-      _.remove(tasksVar, todo => todo===null);
-      tasksVar? this.setState({todos: tasksVar,selectState: tasksVar,}) : null;
-    //   console.log(this.state.todos);
-    }
-
-    //saving data in local storage as a string
-    updateLocalStorage(todos){
-      localStorage.setItem('storedTasks4',JSON.stringify(todos));
-    }
-
+//-------------------------------------------------------------------- DRAG EVENTS-----------------------------------------------------------
     //disabling dragOver to enable dragDrop
     dragOver(e){
       e.preventDefault();
@@ -199,7 +201,27 @@ export default class App extends React.Component {
     dragEnd(event) {
       console.log( "DragEnd id:",event.target.getAttribute('id'));
     }
-    //function which deels with marking if a certain item on a list is completed or not
+//-----------------------------------------------------------------END----------------------------------------------------------------------------
+
+//----------------------------------------------------------------ERROR FUNCTIONS----------------------------------------------------------------
+    renderHeaderError(text){
+      console.log("wywołana renderHeaderError:",text);
+      if(!text){ console.log("if renderHeaderError: Bład",); this.setState({ errortext: '',error:'' });return null}else{this.setState({ errortext: text });return null}
+    }
+    renderError2() {
+        if (!this.state.errortext) { return null; }
+        return <div className="main__todo-creator__error">{this.state.errortext}</div>;
+    }
+    //function which renders error where the form is filled incorrectly
+    renderError() {
+        if (!this.state.error) { return null; }
+        return <div className="main__todo-creator__error">{this.state.error}</div>;
+    }
+    //-----------------------------------------------------------------END----------------------------------------------------------------------------
+
+    //------------------------------------------------------CREATE,DELETE,SAVE ITEM FUNCTIONS----------------------------------------------------------------
+
+  //function which deels with marking if a certain item on a list is completed or not
     toggleTask(task) {
       this.state.todos=tasksVar;
       const foundTodo = _.find(this.state.todos, todo => todo?todo.task === task:null);
@@ -214,19 +236,6 @@ export default class App extends React.Component {
       }
     }
 
-    renderHeaderError(text){
-      console.log("wywołana renderHeaderError:",text);
-      if(!text){ console.log("if renderHeaderError: Bład",); this.setState({ errortext: '',error:'' });return null}else{this.setState({ errortext: text });return null}
-    }
-    renderError2() {
-        if (!this.state.errortext) { return null; }
-        return <div className="main__todo-creator__error">{this.state.errortext}</div>;
-    }
-    //function which renders error where the form is filled incorrectly
-    renderError() {
-        if (!this.state.error) { return null; }
-        return <div className="main__todo-creator__error">{this.state.error}</div>;
-    }
 
     //function which deels with creating a new element on the list
     createTask(task) {
@@ -271,3 +280,4 @@ export default class App extends React.Component {
         this.updateLocalStorage(this.state.todos);
     }
 }
+//-----------------------------------------------------------------END----------------------------------------------------------------------------
