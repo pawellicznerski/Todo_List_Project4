@@ -61,7 +61,6 @@ export default class TodosListItem extends React.Component {
                         "todo-app__main__todo-list__item__buttons-container__button
                         todo-app__main__todo-list__item__buttons-container__button__image
                         todo-app__main__todo-list__item__buttons-container__button__image_save"
-                      onClick={this.onSaveClick.bind(this)}
                       ></button>
                     <button
                       className=
@@ -145,9 +144,12 @@ export default class TodosListItem extends React.Component {
     onEditClick(e) {
       e.preventDefault();
       // this.props.dropBlockOnEdit(true);
-      this.state.isBlockingClick
-      ?this.setState({ isBlockingClick: false, })
-      :this.setState({ isEditing: true, });
+      if(this.state.isBlockingClick){
+      this.onSaveClick();
+      this.setState({ isBlockingClick: false, })
+    } else {
+      this.setState({ isEditing: true, });
+    }
     }
     // fn which deals with canceling the editing mode
     onCancelClick() {
@@ -155,8 +157,7 @@ export default class TodosListItem extends React.Component {
         // this.props.dropBlockOnEdit(false);
     }
     // fn which deals with saving the editing mode. The fn triggers fn saveTask() recived in props from todo-app
-    onSaveClick(event) {
-        event.preventDefault();
+    onSaveClick() {
         const oldTask = this.props.task;
         const newTask = this.state.value;
         this.props.saveTask(oldTask, newTask);
