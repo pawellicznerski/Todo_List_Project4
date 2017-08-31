@@ -115,16 +115,17 @@ export default class TodosListItem extends React.Component {
             <li
               className="todo-app__main__todo-list__item"
               id={this.props.id}
-
               draggable="true"
               onDragStart={this.props.dragStart.bind(this)}
               onDragEnd={this.props.dragEnd.bind(this)}
-
-              onDragEnter={this.props.dragEnter.bind(this)}
-              onDrop={this.props.dragDrop.bind(this)}
-              onDragOver={this.props.dragOver.bind(this)}
-              onDragLeave={this.props.dragLeave.bind(this)}
               >
+              <div
+                className="todo-app__main__todo-list__item__drag-point"
+                onDragEnter={this.props.dragEnter.bind(this)}
+                onDrop={this.props.dragDrop.bind(this)}
+                onDragOver={this.props.dragOver.bind(this)}
+                onDragLeave={this.props.dragLeave.bind(this)}
+                ></div>
                 {this.renderTaskSection()}
                 {this.renderActionsSection()}
             </li>

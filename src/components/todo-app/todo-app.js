@@ -24,7 +24,7 @@ export default class App extends React.Component {
             error:null,
             selectionActive:false,
             movedTextId:'',
-            errortext:''
+            errortext:'',
         };
     }
 
@@ -43,7 +43,10 @@ export default class App extends React.Component {
                       <div className="header__logo__text__dots"></div>
                     </div>
                   </div>
-                  <div className={this.state.menuActive?"header__filters header__filters_visible":'header__filters header__filters_hidden'}>
+                  <div className={
+                      this.state.menuActive
+                      ?"header__filters header__filters_visible"
+                      :'header__filters header__filters_hidden'}>
                     <TodoFinder
                       findTask={this.findTask.bind(this)}
                       renderHeaderError={this.renderHeaderError.bind(this)}
@@ -172,20 +175,17 @@ export default class App extends React.Component {
     }
     //hits when you drag over a certian el
     dragEnter(event) {
-      console.log( "Enter id:",event.target.parentNode.id);
       event.target.style.backgroundColor = "red";
     }
     //hits when you drag off a certian el
     dragLeave(event) {
-      console.log( "Leave id:",event.target.parentNode.id);
-      event.target.style.backgroundColor = "lightGrey";
+      event.target.style.backgroundColor = "white";
     }
     //hits when you drop over a certian el
     //here the code moves data in the array and sends it to local storage
     dragDrop(event) {
       event.preventDefault();
-      event.target.style.backgroundColor = "lightGrey";
-
+      event.target.style.backgroundColor = "white";
       const foundReplacedTextIndex = _.findIndex(this.state.todos, todo => todo.id == event.target.parentNode.id);
       console.log("foundReplacedTextIndex:",foundReplacedTextIndex);
 
