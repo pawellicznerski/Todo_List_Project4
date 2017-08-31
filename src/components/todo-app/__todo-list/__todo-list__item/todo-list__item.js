@@ -7,6 +7,7 @@ export default class TodosListItem extends React.Component {
         this.state = {
             isEditing: false,
             value:this.props.task,
+            isBlockingClick: false
         };
     }
 
@@ -94,7 +95,10 @@ export default class TodosListItem extends React.Component {
                     "todo-app__main__todo-list__item__buttons-container__button
                     todo-app__main__todo-list__item__buttons-container__button__image
                     todo-app__main__todo-list__item__buttons-container__button__image_delete"
-                  onClick={this.props.deleteTask.bind(this, this.props.task)}
+                    onClick={
+                      this.state.isBlockingClick
+                      ? this.blockingFn.bind(this)
+                      :this.props.deleteTask.bind(this, this.props.task)}
                   ></button>
                 <button
                   className={
@@ -131,18 +135,24 @@ export default class TodosListItem extends React.Component {
     handleOnBlur(e) {
       e.preventDefault();
       // this.onSaveClick2();
-      this.setState({ isEditing: false });
+      this.setState({ isEditing: false,isBlockingClick: true,  });
     }
+    // blockClickingOnFocus(e){
+    //   e.preventDefault();
+    //   this.setState({ isBlockingClick: true, });
+    // }
   // fn which deals with editing text
     onEditClick(e) {
       e.preventDefault();
       // this.props.dropBlockOnEdit(true);
-      this.setState({ isEditing: true, });
+      this.state.isBlockingClick
+      ?this.setState({ isBlockingClick: false, })
+      :this.setState({ isEditing: true, });
     }
     // fn which deals with canceling the editing mode
     onCancelClick() {
-        this.setState({ isEditing: false });
-        this.props.dropBlockOnEdit(false);
+        // this.setState({ isEditing: false });
+        // this.props.dropBlockOnEdit(false);
     }
     // fn which deals with saving the editing mode. The fn triggers fn saveTask() recived in props from todo-app
     onSaveClick(event) {
@@ -152,13 +162,9 @@ export default class TodosListItem extends React.Component {
         this.props.saveTask(oldTask, newTask);
         this.setState({ isEditing: false });
     }
-    // onSaveClick2(){
-    //   const oldTask = this.props.task;
-    //   const newTask = this.state.value;
-    //   this.props.saveTask(oldTask, newTask);
-    //   this.setState({ isEditing: false });
-    // };
-
+    blockingFn(){
+      this.setState({ isBlockingClick: false, })
+    }
 }
 
 
