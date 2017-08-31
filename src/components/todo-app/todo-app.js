@@ -278,6 +278,11 @@ export default class App extends React.Component {
         // _.remove(this.state.todos, todo => todo===null);
         this.setState({ todos: this.state.todos});
         this.updateLocalStorage(this.state.todos);
+        if(this.state.value==="complete"){
+          this.filterTasks("complete")
+        }else if(this.state.value==="incomplete"){
+          this.filterTasks("incomplete")
+        }
     }
 }
 //-----------------------------------------------------------------END----------------------------------------------------------------------------
