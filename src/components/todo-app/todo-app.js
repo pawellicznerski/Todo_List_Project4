@@ -89,7 +89,7 @@ export default class App extends React.Component {
 
         );
     }
-//-------------------------------------------------------------------INITIAL AND UNIVERSAL FUNCTIONS------------------------------------------------------
+//--------------------------------------------INITIAL AND UNIVERSAL FUNCTIONS-----------------------------------------------------
     //rendering initial state of todolist from local storage
     componentDidMount(){
       console.log(tasksVar);
@@ -103,7 +103,8 @@ export default class App extends React.Component {
     }
     toggleFilterMenu(e){
       e.preventDefault();
-      this.setState({menuActive: !this.state.menuActive,errortext:''});
+      this.filterTasks("all");
+      this.setState({menuActive: !this.state.menuActive,errortext:'',value:'all'});
     }
 
     handleSelectChange(event) {
@@ -219,7 +220,7 @@ export default class App extends React.Component {
     }
     //-----------------------------------------------------------------END----------------------------------------------------------------------------
 
-    //------------------------------------------------------CREATE,DELETE,SAVE ITEM FUNCTIONS----------------------------------------------------------------
+    //--------------------------------------CREATE,DELETE,SAVE ITEM FUNCTIONS-----------------------------------------------------------
 
   //function which deels with marking if a certain item on a list is completed or not
     toggleTask(task) {
@@ -239,25 +240,18 @@ export default class App extends React.Component {
 
     //function which deels with creating a new element on the list
     createTask(task) {
-      if(!this.state.selectionActive){
+      // if(!this.state.selectionActive){
       // this.setState({selectState: tasksVar,});
       this.state.todos=tasksVar;
       //settles unique id nomber
       const newId = new Date().getTime().toString();
-      // console.log("newId:",newId);
       this.state.todos.unshift({
           task,
           isCompleted: false,
           id: newId,
       });
-      // _.remove(this.state.todos , todo => todo===null);
-      this.setState({todos: this.state.todos,value:'all',selectionActive: false });
-        // console.log('all',this.state.value);
-      this.updateLocalStorage(this.state.todos);
-      // console.log("1:",this.state.todos);
-      } else {
-        this.setState({todos: this.state.todos,value:'all',selectionActive: false,error:"Complete editing item"});
-      }
+      this.setState({todos: this.state.todos,selectionActive: false });
+      this.handleComingBackAfterChangeState(this.state.todos);
     }
     // dropBlockOnEdit(value,value2){
     //   this.setState({ selectionActive: value });
@@ -269,7 +263,7 @@ export default class App extends React.Component {
         foundTodo.task = newTask;
         // _.remove(this.state.todos , todo => todo===null);
         this.setState({ todos: this.state.todos,selectionActive: false,error:"" });
-        this.updateLocalStorage(this.state.todos);
+        this.handleComingBackAfterChangeState(this.state.todos);
     }
     //function which deels with removing a task
     deleteTask(taskToDelete) {
@@ -277,12 +271,15 @@ export default class App extends React.Component {
         _.remove(this.state.todos, todo => todo.task === taskToDelete);
         // _.remove(this.state.todos, todo => todo===null);
         this.setState({ todos: this.state.todos});
-        this.updateLocalStorage(this.state.todos);
-        if(this.state.value==="complete"){
-          this.filterTasks("complete")
-        }else if(this.state.value==="incomplete"){
-          this.filterTasks("incomplete")
-        }
+        this.handleComingBackAfterChangeState(this.state.todos);
+    }
+    handleComingBackAfterChangeState(currenState){
+      this.updateLocalStorage(currenState);
+      if(this.state.value==="complete"){
+        this.filterTasks("complete")
+      }else if(this.state.value==="incomplete"){
+        this.filterTasks("incomplete")
+      }
     }
 }
 //-----------------------------------------------------------------END----------------------------------------------------------------------------
