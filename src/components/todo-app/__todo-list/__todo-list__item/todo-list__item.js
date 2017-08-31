@@ -21,9 +21,11 @@ export default class TodosListItem extends React.Component {
                       className="todo-app__main__todo-list__item__text-container__form"
                       onSubmit={this.onSaveClick.bind(this)}>
                         <input
+                          autoFocus
                           className="todo-app__main__todo-list__item__text-container__form__input"
                           type="text"
                           value={this.state.value}
+                          onBlur={this.handleOnBlur.bind(this)}
                           onChange={this.onChange.bind(this)}
                            />
                     </form>
@@ -125,10 +127,15 @@ export default class TodosListItem extends React.Component {
             </li>
         );
     }
+
+    handleOnBlur(e) {
+      e.preventDefault();
+      this.setState({ isEditing: false });
+    }
   // fn which deals with editing text
     onEditClick(e) {
       e.preventDefault();
-      this.props.dropBlockOnEdit(true);
+      // this.props.dropBlockOnEdit(true);
       this.setState({ isEditing: true, });
     }
     // fn which deals with canceling the editing mode

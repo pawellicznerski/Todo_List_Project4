@@ -76,7 +76,6 @@ export default class App extends React.Component {
                     todos={this.state.todos}
                     toggleTask={this.toggleTask.bind(this)}
                     saveTask={this.saveTask.bind(this)}
-                    dropBlockOnEdit={this.dropBlockOnEdit.bind(this)}
                     deleteTask={this.deleteTask.bind(this)}
                     dragStart={this.dragStart.bind(this)}
                     dragEnd={this.dragEnd.bind(this)}
@@ -128,14 +127,11 @@ export default class App extends React.Component {
 
     //fn finding task's name
     findTask(value){
-      if(!this.state.menuActive){
-        return null;
-      } else {
         const foundTodoArr=[];
         const foundTodo = _.find(this.state.todos, todo => todo?todo.task === value:null);
+        const findErrorValue=foundTodo?"":"No such task in the list";
         foundTodoArr.push(foundTodo);
-        this.setState({ todos: foundTodoArr,value:'',errortext: '' });
-      }//end of blocking findTask in case menu is closed
+        this.setState({ todos: foundTodoArr,value:'',errortext: '',error:findErrorValue });
     }
 
     //rendering initial state of todolist from local storage
@@ -220,7 +216,7 @@ export default class App extends React.Component {
 
     renderHeaderError(text){
       console.log("wywołana renderHeaderError:",text);
-      if(!text){ console.log("if renderHeaderError: Bład",); this.setState({ errortext: '' });return null}else{this.setState({ errortext: text });return null}
+      if(!text){ console.log("if renderHeaderError: Bład",); this.setState({ errortext: '',error:'' });return null}else{this.setState({ errortext: text });return null}
     }
     renderError2() {
         if (!this.state.errortext) { return null; }
@@ -254,9 +250,9 @@ export default class App extends React.Component {
         this.setState({todos: this.state.todos,value:'all',selectionActive: false,error:"Complete editing item"});
       }
     }
-    dropBlockOnEdit(value,value2){
-      this.setState({ selectionActive: value });
-    }
+    // dropBlockOnEdit(value,value2){
+    //   this.setState({ selectionActive: value });
+    // }
     //function which deels with saving changes to the already existing element
     saveTask(oldTask, newTask) {
         this.state.todos=tasksVar;
