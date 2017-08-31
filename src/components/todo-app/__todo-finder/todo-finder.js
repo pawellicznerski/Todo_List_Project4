@@ -13,10 +13,22 @@ export default class TodoFinder extends React.Component {
 
 // redering a form which all the navigates
     render() {
+      const {menuActive}= this.props;
         return (
-          <form  className="header__filters__el header__filters__el__search"  onSubmit={this.handleSearch.bind(this)}>
-              <input className="header__filters__el__search__input"  type="text" placeholder="search for..." value={this.state.value} onChange={this.handleChange.bind(this)} />
-              <button className="header__filters__el__search__button"></button>
+          <form
+            className={
+              menuActive
+              ?"header__filters__el  header__filters__el__search"
+              :"header__filters__el header__filters__el_hidden header__filters__el__search"
+            }
+            onSubmit={this.handleSearch.bind(this)}>
+              <input
+                className="header__filters__el__search__input"
+                type="text" placeholder="search for..."
+                value={this.state.value}
+                onChange={this.handleChange.bind(this)} />
+              <button
+                className="header__filters__el__search__button"></button>
           </form>
         );
     }
@@ -38,9 +50,6 @@ export default class TodoFinder extends React.Component {
     handleSearch(event) {
       event.preventDefault();
       console.log("this.props.menuActive",this.props.menuActive);
-      if(this.props.menuActive){
-        return null;
-      } else {
         const task = this.state.value;
         const validateInput = this.validateInput(task);
 
@@ -57,7 +66,6 @@ export default class TodoFinder extends React.Component {
 
         this.props.findTask(task);
         // console.log(event.target.value);
-      }
     }
 
     // triggered by handleCreate fn, it aims at providing error text if it is necessary

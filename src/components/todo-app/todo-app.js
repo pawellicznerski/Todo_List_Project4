@@ -17,7 +17,7 @@ export default class App extends React.Component {
         super(props);
 
         this.state = {
-            menuActive: true,
+            menuActive: false,
 
             value:"all",
             todos:[],
@@ -51,8 +51,11 @@ export default class App extends React.Component {
                       menuActive={this.state.menuActive}
                     />
                   <select
-                    disabled={this.state.menuActive?'':"true"}
-                    className="header__filters__el header__filters__el__select"
+                    className={
+                      this.state.menuActive
+                      ?"header__filters__el header__filters__el__select"
+                      :"header__filters__el header__filters__el_hidden header__filters__el__select"
+                    }
                     value={this.state.value}
                     onChange={this.handleSelectChange.bind(this)}>
                       <option className="header__filters__el__select__item" value=""></option>
@@ -95,12 +98,8 @@ export default class App extends React.Component {
 
     handleSelectChange(event) {
       event.preventDefault();
-       if(!this.state.menuActive){
-         return null;
-       } else {
          this.setState({value: event.target.value});
          this.filterTasks(event.target.value);
-       }//end of blocking filterTask in case menu is closed
      }
 
   //fn filtering tasks
