@@ -104,9 +104,6 @@ export default class App extends React.Component {
 
   //fn filtering tasks
     filterTasks(value){
-      // if(!this.state.menuActive){
-      //   return null;
-      // } else {
         _.remove(tasksVar, todo => todo===null);
         this.setState({selectState: tasksVar,});
         if(value==="all"){
@@ -122,9 +119,7 @@ export default class App extends React.Component {
         } else if (value==="incomplete"){
           let foundSelectTodos =[];
           for (var i = 0; i < this.state.selectState.length; i++) {
-            if(this.state.selectState[i].isCompleted === false){
-              foundSelectTodos.push(this.state.selectState[i])
-            }
+            if(this.state.selectState[i].isCompleted === false){foundSelectTodos.push(this.state.selectState[i])}
           }
           this.setState({todos: foundSelectTodos,selectionActive:true});
         }
@@ -225,7 +220,7 @@ export default class App extends React.Component {
 
     renderHeaderError(text){
       console.log("wywołana renderHeaderError:",text);
-      if(!text){ console.log("if renderHeaderError: Bład",);return null; this.setState({ errortext: '' })}else{this.setState({ errortext: text })}
+      if(!text){ console.log("if renderHeaderError: Bład",); this.setState({ errortext: '' });return null}else{this.setState({ errortext: text });return null}
     }
     renderError2() {
         if (!this.state.errortext) { return null; }

@@ -22,8 +22,16 @@ export default class CreateTodo extends React.Component {
         return (
           <div className="main__todo-creator" >
             <div className="main__todo-creator__content">
-              <form  className="main__todo-creator__content__form" onSubmit={this.handleCreate.bind(this)}>
-                  <input className="main__todo-creator__content__form__input" type="text" placeholder="What do I need to do?" value={this.state.value} onChange={this.handleChange.bind(this)} />
+              <form
+                className="main__todo-creator__content__form"
+                onSubmit={this.handleCreate.bind(this)}
+                onBlur={this.handleOnBlur.bind(this)}
+                >
+                  <input
+                    className="main__todo-creator__content__form__input"
+                    type="text" placeholder="What do I need to do?"
+                    value={this.state.value}
+                    onChange={this.handleChange.bind(this)} />
                   <button className="main__todo-creator__content__form__button">+</button>
               </form>
             </div>
@@ -35,6 +43,11 @@ export default class CreateTodo extends React.Component {
 //watches value change in input
     handleChange(event) {
       this.setState({value: event.target.value});
+    }
+
+    handleOnBlur(e) {
+      e.preventDefault();
+      this.setState({ error: ''});
     }
 
 // a function which validates data from the form, once the are ok the fn triggers createTast() fn from todo-app, in case it is from it runs renderError() fn
