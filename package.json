@@ -2,7 +2,7 @@
   "name": "todo_list_project4",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "http://pawellicznerski.github.io/Todo_List_Project4",
+  "homepage" : "https://pawellicznerski.github.io/Todo_List_Project4/",
   "dependencies": {
     "lodash": "^4.17.4",
     "react": "^15.6.1",
