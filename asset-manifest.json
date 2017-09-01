@@ -1,6 +1,17 @@
 {
-  "main.css": "static/css/main.4751b7cc.css",
-  "main.css.map": "static/css/main.4751b7cc.css.map",
-  "main.js": "static/js/main.aff49b76.js",
-  "main.js.map": "static/js/main.aff49b76.js.map"
+  "main.css": "static/css/main.77bc835b.css",
+  "main.css.map": "static/css/main.77bc835b.css.map",
+  "main.js": "static/js/main.5a93dbaa.js",
+  "main.js.map": "static/js/main.5a93dbaa.js.map",
+  "static/media/_todo-list__item__drag-point__image_hand_open.svg": "static/media/_todo-list__item__drag-point__image_hand_open.4fb8cb68.svg",
+  "static/media/_todo-list__item__images_cancel.svg": "static/media/_todo-list__item__images_cancel.ab8ee812.svg",
+  "static/media/_todo-list__item__images_delete.svg": "static/media/_todo-list__item__images_delete.bdb58561.svg",
+  "static/media/_todo-list__item__images_edit.svg": "static/media/_todo-list__item__images_edit.c89c7639.svg",
+  "static/media/_todo-list__item__images_save.svg": "static/media/_todo-list__item__images_save.c27b9716.svg",
+  "static/media/_todo-list__item__images_tick.svg": "static/media/_todo-list__item__images_tick.8b9c5de9.svg",
+  "static/media/_todo-list__item__images_tick2.svg": "static/media/_todo-list__item__images_tick2.9b2a91dd.svg",
+  "static/media/header__filters__el__select_image_arrow.svg": "static/media/header__filters__el__select_image_arrow.4c916aa9.svg",
+  "static/media/header__logo__menu-button_icon.svg": "static/media/header__logo__menu-button_icon.5627ab09.svg",
+  "static/media/header__logo__menu-text_dots.svg": "static/media/header__logo__menu-text_dots.84a7647f.svg",
+  "static/media/todo-finder_image_magnifyingGlass.svg": "static/media/todo-finder_image_magnifyingGlass.d9557ec4.svg"
 }
