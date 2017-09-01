@@ -28,10 +28,13 @@ export default class CreateTodo extends React.Component {
                 >
                   <input
                     className="main__todo-creator__content__form__input"
-                    type="text" placeholder="What do I need to do?"
+                    type="text"
+                    placeholder="What do I need to do?"
                     value={this.state.value}
                     onChange={this.handleChange.bind(this)} />
-                  <button className="main__todo-creator__content__form__button">+</button>
+                  <button
+                    className="main__todo-creator__content__form__button"
+                    >+</button>
               </form>
             </div>
             {this.renderError()}
@@ -43,7 +46,7 @@ export default class CreateTodo extends React.Component {
     handleChange(event) {
       this.setState({value: event.target.value});
     }
-
+//removing error on blur
     handleOnBlur(e) {
       e.preventDefault();
       this.setState({ error: ''});

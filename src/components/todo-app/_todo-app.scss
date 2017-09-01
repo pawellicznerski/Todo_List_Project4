@@ -6,7 +6,6 @@
 
 .todo-app{
   width: 100vw;
-  // height: 100vh;
   @include tablet{
     display: flex;
     justify-content: center;
@@ -17,12 +16,11 @@
     width: 100%;
     min-height: 900px;
     background-color: rgba(230,230,230,1);
-
     @include tablet{
       width: 700px;
     };
   }
-}
+}//end of todo-app
   .header{
     &__logo{
       border: 0;
@@ -51,7 +49,7 @@
             background-color: rgba(255,98,43,1);
           };
         }
-      }
+      }//end of menu-button
       &__menu-button_active{
         background-color: rgba(255,98,43,1);
       }
@@ -66,8 +64,6 @@
           text-align: center;
           vertical-align: middle;
           background-color: rgba(247,78,23,1);
-          // padding-right: 10%;
-          // border: 1px solid blue;
           font-family: 'Pacifico', cursive;
           color: rgba(255,255,255,1);
           font-size: 33px;
@@ -78,17 +74,15 @@
           width: 25px;
           height: 25px;
           background-image: url('./components/todo-app/_todo-app__images/header__logo__menu-text_dots.svg');
-          // background-image: url('./components/todo-app/_todo-app__images/1.svg');
-          // background-position: center;
-          // background-repeat: no-repeat;
-          // background-size: cover;
           animation: play 3.1s steps(4) infinite;
         }
       }
-    }
+    }//end of logo
+    //keyframe which deals with dots sprite
     @keyframes play {
       100% { background-position: -100px; }
     }
+    //two key frames which help animate header filter toggling
     @keyframes FadeIn {
      0% {
        opacity: 0;
@@ -119,7 +113,6 @@
       @include tablet{
         width: 700px;
       };
-
       &_hidden{
         height: 0;
         display: block;
@@ -135,11 +128,9 @@
         animation: FadeIn 0.6s ease-in-out;
       }
       &__el{
-        // animation: FadeInEl 0.6s ease-in-out;
         display: flex;
         width:45vw;
         &_hidden{
-          // animation: FadeOutEl 0.6s ease-in-out;
           display: none;
         }
         &__select{
@@ -159,7 +150,6 @@
           background-position: right;
           background-repeat: no-repeat;
           background-size: contain;
-
           &__item{
             padding-left: 10px;
             color: rgba(217,38,13,1);
@@ -168,4 +158,4 @@
         }
       }
     }//end og header filters
-  }
+  }//end of header

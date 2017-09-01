@@ -11,10 +11,8 @@ export default class TodosListItem extends React.Component {
         };
     }
 
-// a fn which deals with rendering only text in a task section. there are two versions editable and not editable
     renderTaskSection() {
       const { task, isCompleted } = this.props;
-
         if (this.state.isEditing) {
             return (
                 <div className="todo-app__main__todo-list__item__text-container">
@@ -67,7 +65,6 @@ export default class TodosListItem extends React.Component {
                         "todo-app__main__todo-list__item__buttons-container__button
                         todo-app__main__todo-list__item__buttons-container__button__image
                         todo-app__main__todo-list__item__buttons-container__button__image_cancel"
-                      onClick={this.onCancelClick.bind(this)}
                       ></button>
                     <button
                       className={
@@ -109,7 +106,6 @@ export default class TodosListItem extends React.Component {
             </div>
         );
     }
-// a part resposible for rendering a whole element
     render() {
         return (
             <li
@@ -117,7 +113,6 @@ export default class TodosListItem extends React.Component {
               id={this.props.id}
               draggable="true"
               onDragStart={this.props.dragStart.bind(this)}
-              onDragEnd={this.props.dragEnd.bind(this)}
               >
               <div
                 className="todo-app__main__todo-list__item__drag-point"
@@ -131,32 +126,21 @@ export default class TodosListItem extends React.Component {
             </li>
         );
     }
-
+// function used to solve the problem of cliking in different plave while editing item
     handleOnBlur(e) {
       e.preventDefault();
-      // this.onSaveClick2();
       this.setState({ isEditing: false,isBlockingClick: true,  });
     }
-    // blockClickingOnFocus(e){
-    //   e.preventDefault();
-    //   this.setState({ isBlockingClick: true, });
-    // }
-  // fn which deals with editing text
+// fn to edit item text
     onEditClick(e) {
       e.preventDefault();
-      // this.props.dropBlockOnEdit(true);
       if(this.state.isBlockingClick){
       this.onSaveClick();
       this.setState({ isBlockingClick: false, })
     } else {
       this.setState({ isEditing: true, });
     }
-    }
-    // fn which deals with canceling the editing mode
-    onCancelClick() {
-        // this.setState({ isEditing: false });
-        // this.props.dropBlockOnEdit(false);
-    }
+  }
     // fn which deals with saving the editing mode. The fn triggers fn saveTask() recived in props from todo-app
     onSaveClick() {
         const oldTask = this.props.task;
@@ -164,14 +148,12 @@ export default class TodosListItem extends React.Component {
         this.props.saveTask(oldTask, newTask);
         this.setState({ isEditing: false });
     }
+    //fn which which is hit instead of edit fn
     blockingFn(){
       this.setState({ isBlockingClick: false, })
     }
 }
-
-
-
-
+// IN CAse I Need it
               // onTouchStart={this.props.touchStart.bind(this)}
               // onTouchMove={this.props.touchMove.bind(this)}
               // onTouchEnd={this.props.touchEnd.bind(this)}

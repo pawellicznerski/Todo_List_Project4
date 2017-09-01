@@ -38,12 +38,11 @@ export default class TodoFinder extends React.Component {
     renderError(validateInput) {
         (!validateInput)
         ?this.props.renderHeaderError('')
-        :console.log("nie ma wartości w formularzu"); this.props.renderHeaderError(validateInput);
+        :this.props.renderHeaderError(validateInput);
     }
     //function which renders error where the form is filled incorrectly
     handleOnBlur(e) {
       e.preventDefault();
-      console.log("renderOnBlur:");
       this.props.renderHeaderError('');
     }
 
@@ -54,7 +53,6 @@ export default class TodoFinder extends React.Component {
 
     handleSearch(event) {
       event.preventDefault();
-      console.log("this.props.menuActive",this.props.menuActive);
         const task = this.state.value;
         const validateInput = this.validateInput(task);
 

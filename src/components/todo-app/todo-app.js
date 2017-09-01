@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import CreateTodo from './__todo-form/todo-form.js';
 import TodosList from './__todo-list/todo-list.js';
-import TodoFilter from './__todo-filter/todo-filter.js';
 import TodoFinder from './__todo-finder/todo-finder.js';
 import _ from "lodash";
 
@@ -22,9 +21,9 @@ export default class App extends React.Component {
             todos:[],
             selectState:[],
             error:null,
+            errortext:'',
             selectionActive:false,
             movedTextId:'',
-            errortext:'',
         };
     }
 
@@ -35,7 +34,10 @@ export default class App extends React.Component {
                 <header className="header">
                   <div className="header__logo">
                     <button
-                      className={this.state.menuActive?"header__logo__menu-button header__logo__menu-button_active" :"header__logo__menu-button" }
+                      className={
+                        this.state.menuActive
+                        ?"header__logo__menu-button header__logo__menu-button_active"
+                        :"header__logo__menu-button" }
                       onClick={this.toggleFilterMenu.bind(this)}>
                     </button>
                     <div className="header__logo__text">
@@ -80,7 +82,6 @@ export default class App extends React.Component {
                     saveTask={this.saveTask.bind(this)}
                     deleteTask={this.deleteTask.bind(this)}
                     dragStart={this.dragStart.bind(this)}
-                    dragEnd={this.dragEnd.bind(this)}
                     dragEnter={this.dragEnter.bind(this)}
                     dragLeave={this.dragLeave.bind(this)}
                     dragOver={this.dragOver}
@@ -98,18 +99,18 @@ export default class App extends React.Component {
       console.log(tasksVar);
       _.remove(tasksVar, todo => todo===null);
       tasksVar? this.setState({todos: tasksVar,selectState: tasksVar,}) : null;
-    //   console.log(this.state.todos);
     }
     //saving data in local storage as a string
     updateLocalStorage(todos){
       localStorage.setItem('storedTasks4',JSON.stringify(todos));
     }
+    //fn dealing with showing and hiding menu
     toggleFilterMenu(e){
       e.preventDefault();
       this.filterTasks("all");
       this.setState({menuActive: !this.state.menuActive,errortext:'',value:'all'});
     }
-
+    //fn handling change in value in select form
     handleSelectChange(event) {
       event.preventDefault();
          this.setState({value: event.target.value});
@@ -145,7 +146,7 @@ export default class App extends React.Component {
     //fn finding task's name
     findTask(value){
         const foundTodoArr=[];
-        const foundTodo = _.find(this.state.todos, todo => todo?todo.task === value:null);
+        const foundTodo = _.find(this.state.todos, todo => todo.task === value);
         const findErrorValue=foundTodo?"":"No such task in the list";
         foundTodoArr.push(foundTodo);
         this.setState({ todos: foundTodoArr,value:'',errortext: '',error:findErrorValue });
@@ -161,17 +162,9 @@ export default class App extends React.Component {
 
     //enabling moving data
     dragStart(event) {
-      // console.log("dragStart:",this.state.selectionActive);
-      if(!this.state.selectionActive){
-        // event.dataTransfer.setData("text", event.target.getAttribute('id') );
         const movedTextId = event.target.id;
         this.setState({movedTextId:movedTextId})
-        console.log("movedTextId:",movedTextId);
         event.dataTransfer.dropEffect = "move";
-        // console.log( "DragStart id:",event.target.getAttribute('id'));
-      } else{
-        event.preventDefault();
-      }
     }
     //hits when you drag over a certian el
     dragEnter(event) {
@@ -187,33 +180,28 @@ export default class App extends React.Component {
       event.preventDefault();
       event.target.style.backgroundColor = "white";
       const foundReplacedTextIndex = _.findIndex(this.state.todos, todo => todo.id == event.target.parentNode.id);
-      console.log("foundReplacedTextIndex:",foundReplacedTextIndex);
 
       const foundMovedObject = _.find(this.state.todos, todo => todo.id == this.state.movedTextId);
-      // console.log("foundMovedObject:",foundMovedObject);
       _.remove(this.state.todos, todo => todo.id == this.state.movedTextId);
       this.state.todos.splice(foundReplacedTextIndex, 0, foundMovedObject);
-      // console.log("4:",this.state.todos);
+
       _.remove(this.state.todos , todo => todo===null);
       this.setState({ todos: this.state.todos });
       this.updateLocalStorage(this.state.todos);
-    }
-    //i do not need it at the moment, but meybe :)
-    dragEnd(event) {
-      console.log( "DragEnd id:",event.target.getAttribute('id'));
-    }
+    }//end of dropdrag
 //-----------------------------------------------------------------END----------------------------------------------------------------------------
 
 //----------------------------------------------------------------ERROR FUNCTIONS----------------------------------------------------------------
+    //fn which gets info from search component, if and what render in error spot
     renderHeaderError(text){
-      console.log("wywołana renderHeaderError:",text);
-      if(!text){ console.log("if renderHeaderError: Bład",); this.setState({ errortext: '',error:'' });return null}else{this.setState({ errortext: text });return null}
+      if(!text){ this.setState({ errortext: '',error:'' })}else{this.setState({ errortext: text })}
     }
+    //fn which renders info from search component
     renderError2() {
         if (!this.state.errortext) { return null; }
         return <div className="main__todo-creator__error">{this.state.errortext}</div>;
     }
-    //function which renders error where the form is filled incorrectly
+    //function which renders error where the create form is filled incorrectly
     renderError() {
         if (!this.state.error) { return null; }
         return <div className="main__todo-creator__error">{this.state.error}</div>;
@@ -227,23 +215,17 @@ export default class App extends React.Component {
       this.state.todos=tasksVar;
       const foundTodo = _.find(this.state.todos, todo => todo?todo.task === task:null);
       const sendValueToFilter = foundTodo.isCompleted?"complete":"incomplete";
-      console.log(sendValueToFilter);
       foundTodo.isCompleted = !foundTodo.isCompleted;
-      // _.remove(this.state.todos , todo => todo===null);
+
       this.setState({ todos: this.state.todos });
       this.updateLocalStorage(this.state.todos);
       if(this.state.selectionActive){
         this.filterTasks(sendValueToFilter);
       }
     }
-
-
     //function which deels with creating a new element on the list
     createTask(task) {
-      // if(!this.state.selectionActive){
-      // this.setState({selectState: tasksVar,});
       this.state.todos=tasksVar;
-      //settles unique id nomber
       const newId = new Date().getTime().toString();
       this.state.todos.unshift({
           task,
@@ -253,10 +235,7 @@ export default class App extends React.Component {
       this.setState({todos: this.state.todos,selectionActive: false });
       this.handleComingBackAfterChangeState(this.state.todos);
     }
-    // dropBlockOnEdit(value,value2){
-    //   this.setState({ selectionActive: value });
-    // }
-    //function which deels with saving changes to the already existing element
+    //function which deels with saving changes in an item
     saveTask(oldTask, newTask) {
         this.state.todos=tasksVar;
         const foundTodo = _.find(this.state.todos, todo => todo?todo.task === oldTask:null);
@@ -273,6 +252,7 @@ export default class App extends React.Component {
         this.setState({ todos: this.state.todos});
         this.handleComingBackAfterChangeState(this.state.todos);
     }
+    //fn which supports delete/save/create fns and refilters data if the fn were hit while being segregated
     handleComingBackAfterChangeState(currenState){
       this.updateLocalStorage(currenState);
       if(this.state.value==="complete"){
