@@ -15,13 +15,13 @@ export default class TodosListItem extends React.Component {
       const { task, isCompleted } = this.props;
         if (this.state.isEditing) {
             return (
-                <div className="todo-app__main__todo-list__item__text-container">
+                <div className="todo-app__main__list__item__text-container">
                     <form
-                      className="todo-app__main__todo-list__item__text-container__form"
+                      className="todo-app__main__list__item__text-container__form"
                       onSubmit={this.onSaveClick.bind(this)}>
                         <input
                           autoFocus
-                          className="todo-app__main__todo-list__item__text-container__form__input"
+                          className="todo-app__main__list__item__text-container__form__input"
                           type="text"
                           value={this.state.value}
                           onBlur={this.handleOnBlur.bind(this)}
@@ -33,12 +33,12 @@ export default class TodosListItem extends React.Component {
         }
 
         return (
-            <div className="todo-app__main__todo-list__item__text-container">
+            <div className="todo-app__main__list__item__text-container">
                 <p
                   className={
                       isCompleted
-                      ?"todo-app__main__todo-list__item__text-container__text todo-app__main__todo-list__item__text-container__text_completed"
-                      :"todo-app__main__todo-list__item__text-container__text todo-app__main__todo-list__item__text-container__text_incompleted"}
+                      ?"todo-app__main__list__item__text-container__text todo-app__main__list__item__text-container__text_completed"
+                      :"todo-app__main__list__item__text-container__text todo-app__main__list__item__text-container__text_incompleted"}
                   >{task}</p>
             </div>
         );
@@ -53,24 +53,24 @@ export default class TodosListItem extends React.Component {
 
         if (this.state.isEditing) {
             return (
-                <div className="todo-app__main__todo-list__item__buttons-container">
+                <div className="todo-app__main__list__item__buttons-container">
                     <button
                       className=
-                        "todo-app__main__todo-list__item__buttons-container__button
-                        todo-app__main__todo-list__item__buttons-container__button__image
-                        todo-app__main__todo-list__item__buttons-container__button__image_save"
+                        "todo-app__main__list__item__buttons-container__button
+                        todo-app__main__list__item__buttons-container__button__image
+                        todo-app__main__list__item__buttons-container__button__image_save"
                       ></button>
                     <button
                       className=
-                        "todo-app__main__todo-list__item__buttons-container__button
-                        todo-app__main__todo-list__item__buttons-container__button__image
-                        todo-app__main__todo-list__item__buttons-container__button__image_cancel"
+                        "todo-app__main__list__item__buttons-container__button
+                        todo-app__main__list__item__buttons-container__button__image
+                        todo-app__main__list__item__buttons-container__button__image_cancel"
                       ></button>
                     <button
                       className={
                         isCompleted
-                        ?"todo-app__main__todo-list__item__buttons-container__button todo-app__main__todo-list__item__buttons-container__button__image             todo-app__main__todo-list__item__buttons-container__button__image_tick_active"
-                        :"todo-app__main__todo-list__item__buttons-container__button todo-app__main__todo-list__item__buttons-container__button__image todo-app__main__todo-list__item__buttons-container__button__image_tick"}
+                        ?"todo-app__main__list__item__buttons-container__button todo-app__main__list__item__buttons-container__button__image             todo-app__main__list__item__buttons-container__button__image_tick_active"
+                        :"todo-app__main__list__item__buttons-container__button todo-app__main__list__item__buttons-container__button__image todo-app__main__list__item__buttons-container__button__image_tick"}
                         onClick={this.props.toggleTask.bind(this,task)}
                       ></button>
                 </div>
@@ -78,19 +78,19 @@ export default class TodosListItem extends React.Component {
         }
 
         return (
-            <div className="todo-app__main__todo-list__item__buttons-container">
+            <div className="todo-app__main__list__item__buttons-container">
                 <button
                   className=
-                    "todo-app__main__todo-list__item__buttons-container__button
-                    todo-app__main__todo-list__item__buttons-container__button__image
-                    todo-app__main__todo-list__item__buttons-container__button__image_edit"
+                    "todo-app__main__list__item__buttons-container__button
+                    todo-app__main__list__item__buttons-container__button__image
+                    todo-app__main__list__item__buttons-container__button__image_edit"
                   onClick={this.onEditClick.bind(this)}
                   ></button>
                 <button
                   className=
-                    "todo-app__main__todo-list__item__buttons-container__button
-                    todo-app__main__todo-list__item__buttons-container__button__image
-                    todo-app__main__todo-list__item__buttons-container__button__image_delete"
+                    "todo-app__main__list__item__buttons-container__button
+                    todo-app__main__list__item__buttons-container__button__image
+                    todo-app__main__list__item__buttons-container__button__image_delete"
                     onClick={
                       this.state.isBlockingClick
                       ? this.blockingFn.bind(this)
@@ -99,8 +99,8 @@ export default class TodosListItem extends React.Component {
                 <button
                   className={
                     isCompleted
-                    ?"todo-app__main__todo-list__item__buttons-container__button todo-app__main__todo-list__item__buttons-container__button__image             todo-app__main__todo-list__item__buttons-container__button__image_tick_active"
-                    :"todo-app__main__todo-list__item__buttons-container__button    todo-app__main__todo-list__item__buttons-container__button__image todo-app__main__todo-list__item__buttons-container__button__image_tick"}
+                    ?"todo-app__main__list__item__buttons-container__button todo-app__main__list__item__buttons-container__button__image             todo-app__main__list__item__buttons-container__button__image_tick_active"
+                    :"todo-app__main__list__item__buttons-container__button    todo-app__main__list__item__buttons-container__button__image todo-app__main__list__item__buttons-container__button__image_tick"}
                     onClick={this.props.toggleTask.bind(this,task)}
                   ></button>
             </div>
@@ -109,13 +109,13 @@ export default class TodosListItem extends React.Component {
     render() {
         return (
             <li
-              className="todo-app__main__todo-list__item"
+              className="todo-app__main__list__item"
               id={this.props.id}
               draggable="true"
               onDragStart={this.props.dragStart.bind(this)}
               >
               <div
-                className="todo-app__main__todo-list__item__drag-point"
+                className="todo-app__main__list__item__drag-point"
                 onDragEnter={this.props.dragEnter.bind(this)}
                 onDrop={this.props.dragDrop.bind(this)}
                 onDragOver={this.props.dragOver.bind(this)}

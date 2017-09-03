@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import CreateTodo from './__todo-form/todo-form.js';
-import TodosList from './__todo-list/todo-list.js';
-import TodoFinder from './__todo-finder/todo-finder.js';
+import CreateTodo from './__todo-app__main__form/todo-app__main__form.js';
+import TodosList from './__todo-app__main__list/todo-app__main__list.js';
+import TodoFinder from './__todo-app__header__filters__el__finder/todo-app__header__filters__el__finder.js';
 import _ from "lodash";
 
 //creating an array in which local storage will be put
@@ -31,24 +31,24 @@ export default class App extends React.Component {
         return (
             <div className="todo-app" >
               <div className="todo-app__content">
-                <header className="header">
-                  <div className="header__logo">
+                <header className="todo-app__header">
+                  <div className="todo-app__header__logo">
                     <button
                       className={
                         this.state.menuActive
-                        ?"header__logo__menu-button header__logo__menu-button_active"
-                        :"header__logo__menu-button" }
+                        ?"todo-app__header__logo__menu-button todo-app__header__logo__menu-button_active"
+                        :"todo-app__header__logo__menu-button" }
                       onClick={this.toggleFilterMenu.bind(this)}>
                     </button>
-                    <div className="header__logo__text">
-                      <p className="header__logo__text__words">Your todo list</p>
-                      <div className="header__logo__text__dots"></div>
+                    <div className="todo-app__header__logo__text">
+                      <p className="todo-app__header__logo__text__words">Your todo list</p>
+                      <div className="todo-app__header__logo__text__dots"></div>
                     </div>
                   </div>
                   <div className={
                       this.state.menuActive
-                      ?"header__filters header__filters_visible"
-                      :'header__filters header__filters_hidden'}>
+                      ?"todo-app__header__filters todo-app__header__filters_visible"
+                      :'todo-app__header__filters todo-app__header__filters_hidden'}>
                     <TodoFinder
                       findTask={this.findTask.bind(this)}
                       renderHeaderError={this.renderHeaderError.bind(this)}
@@ -57,20 +57,20 @@ export default class App extends React.Component {
                   <select
                     className={
                       this.state.menuActive
-                      ?"header__filters__el header__filters__el__select"
-                      :"header__filters__el header__filters__el_hidden header__filters__el__select"
+                      ?"todo-app__header__filters__el todo-app__header__filters__el__select"
+                      :"todo-app__header__filters__el todo-app__header__filters__el__select_hidden todo-app__header__filters__el__select"
                     }
                     value={this.state.value}
                     onChange={this.handleSelectChange.bind(this)}>
-                      <option className="header__filters__el__select__item" value=""></option>
-                      <option className="header__filters__el__select__item" value="all">all</option>
-                      <option className="header__filters__el__select__item" value="complete">complete</option>
-                      <option className="header__filters__el__select__item" value="incomplete">incomplete</option>
+                      <option className="todo-app__header__filters__el__select__item" value=""></option>
+                      <option className="todo-app__header__filters__el__select__item" value="all">all</option>
+                      <option className="todo-app__header__filters__el__select__item" value="complete">complete</option>
+                      <option className="todo-app__header__filters__el__select__item" value="incomplete">incomplete</option>
                   </select>
                   </div>
                   {this.renderError2()}
                 </header>
-                <main className="main">
+                <main className="todo-app__main">
                   <CreateTodo
                     todos={this.state.todos}
                     createTask={this.createTask.bind(this)}
@@ -93,7 +93,7 @@ export default class App extends React.Component {
 
         );
     }
-//--------------------------------------------INITIAL AND UNIVERSAL FUNCTIONS-----------------------------------------------------
+//--------------------------------------------INITIAL AND UNIVERSAL FUNCTIONS--------
     //rendering initial state of todolist from local storage
     componentDidMount(){
       console.log(tasksVar);
@@ -116,9 +116,9 @@ export default class App extends React.Component {
          this.setState({value: event.target.value});
          this.filterTasks(event.target.value);
      }
-//-------------------------------------------------------------------------END-----------------------------------------------------------------------
+//-------------------------------------------------------------------------END-----------
 
-//--------------------------------------------------------------------FILTER AND FINDING FUNCTIONS-----------------------------------------------
+//--------------------------------------------------------------------FILTER AND FINDING FUNCTIONS-----
   //fn filtering tasks
     filterTasks(value){
         _.remove(tasksVar, todo => todo===null);
@@ -151,10 +151,10 @@ export default class App extends React.Component {
         foundTodoArr.push(foundTodo);
         this.setState({ todos: foundTodoArr,value:'',errortext: '',error:findErrorValue });
     }
-//--------------------------------------------------------------------END----------------------------------------------------------------------
+//--------------------------------------------------------------------END---------------------
 
-//-------------------------------------------------------------------- DRAG EVENTS-----------------------------------------------------------
-    //disabling dragOver to enable dragDrop
+//-------------------------------------------------------------------- DRAG EVENTS-------
+//disabling dragOver to enable dragDrop
     dragOver(e){
       e.preventDefault();
       return false;
@@ -189,9 +189,9 @@ export default class App extends React.Component {
       this.setState({ todos: this.state.todos });
       this.updateLocalStorage(this.state.todos);
     }//end of dropdrag
-//-----------------------------------------------------------------END----------------------------------------------------------------------------
+//-----------------------------------------------------------------END--------------------------------
 
-//----------------------------------------------------------------ERROR FUNCTIONS----------------------------------------------------------------
+//----------------------------------------------------------------ERROR  FUNCTIONS----------------------------
     //fn which gets info from search component, if and what render in error spot
     renderHeaderError(text){
       if(!text){ this.setState({ errortext: '',error:'' })}else{this.setState({ errortext: text })}
@@ -199,16 +199,16 @@ export default class App extends React.Component {
     //fn which renders info from search component
     renderError2() {
         if (!this.state.errortext) { return null; }
-        return <div className="main__todo-creator__error">{this.state.errortext}</div>;
+        return <div className="todo-app__main__form__error">{this.state.errortext}</div>;
     }
     //function which renders error where the create form is filled incorrectly
     renderError() {
         if (!this.state.error) { return null; }
-        return <div className="main__todo-creator__error">{this.state.error}</div>;
+        return <div className="todo-app__main__form__error">{this.state.error}</div>;
     }
-    //-----------------------------------------------------------------END----------------------------------------------------------------------------
+//-----------------------------------------------------------------END-------------------
 
-    //--------------------------------------CREATE,DELETE,SAVE ITEM FUNCTIONS-----------------------------------------------------------
+//--------------------------------------CREATE,DELETE,SAVE ITEM FUNCTIONS---------
 
   //function which deels with marking if a certain item on a list is completed or not
     toggleTask(task) {
@@ -262,4 +262,4 @@ export default class App extends React.Component {
       }
     }
 }
-//-----------------------------------------------------------------END----------------------------------------------------------------------------
+//-----------------------------------------------------------------END-------------------------

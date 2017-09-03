@@ -1,0 +1,43 @@
+@import "./../_todo-app__base/_todo-app__base__variables";
+@import "./../_todo-app__base/_todo-app__base__mixins";
+
+.todo-app__header__filters__el__finder{
+  border: 1px solid $color__primary_green;
+  width: 40vw;
+  height: 30px;
+  border-radius:15px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  &__search{
+    height: 30px;
+    border-radius:15px;
+    &__input{
+      outline: none;
+      padding-left: 6px;
+      font-size: 18px;
+      color: $color__primary_green_dark_opacity_min;
+      border: 0;
+      width: 70%;
+      border-left: auto;
+      @include todo-app__form__input-placeholder($color__primary_green_dark_opacity_middle);
+    }
+    &__button{
+      padding-top: 2px;
+      border: 0 solid $color__primary_orange;
+      background-image: url("./components/todo-app/__todo-app__header__filters__el__finder/todo-app__header__filters__el__finder_image_magnifyingGlass.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-color: $color__primary_green;
+      color:  $color__primary_green;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 0 15px 15px 0;
+      height: 28px;
+      width: 40px;
+      cursor: pointer;
+      outline: none;
+    }
+  }
+}

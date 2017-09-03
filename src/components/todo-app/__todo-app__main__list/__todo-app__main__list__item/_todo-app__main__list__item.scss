@@ -1,0 +1,110 @@
+@import "./../../_todo-app__base/_todo-app__base__media-query-mixins";
+@import "./../../_todo-app__base/_todo-app__base__variables";
+@import "./../../_todo-app__base/_todo-app__base__mixins";
+
+.todo-app__main__list__item{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 40px;
+  margin-top: 10px;
+  border-radius: 15px;
+  border: 0;
+  background-color: $color__background_white;
+  &:hover{
+    @include todo-app__main__list__item_box-shadow($color__primary_green);
+  }
+  &__drag-point{
+    width: 20px;
+    @include tablet{
+      align-self: flex-start;
+      min-height: 40px;
+      width: 40px;
+      border-radius:  15px 0 0 15px;
+      margin: auto 0;
+      background-image: url("./components/todo-app/__todo-app__main__list/__todo-app__main__list__item/_todo-app__main__list__item__images/_todo-app__main__list__item__drag-point__image_hand_open.png");
+      cursor: grab;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 20px auto;
+    };
+  }
+  &__text-container{
+    width: 55%;
+    margin-left: 11px;
+    word-wrap: break-word;
+    word-break: break-all;
+    &__form{
+      width: 100%;
+      min-height: 40px;
+      &__input{
+        width: 100%;
+        min-height: 40px;
+        border: 1px solid white;
+        color: $color__primary_green_lightest;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+    &__text{
+      background-color: $color__background_white;
+      font-size: 15px;
+      font-weight: bold;
+      // text-align: center;
+      vertical-align: middle;
+      padding: 3px 0;
+
+    }
+    &__text_incompleted{
+      color:  $color__primary_orange;
+    }
+    &__text_completed{
+      color: $color__primary_green;
+    }
+  }//end of styling text container
+
+  &__buttons-container{
+    width: 30%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color__background_white;
+    &__button{
+      outline: none;
+      cursor: pointer;
+      height: 32px;
+      width: 32px;
+      border: 0;
+      margin: 0 5%;
+      }
+    &__button__image{
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-color: $color__background_white;
+    }
+    @each $i in save, cancel, edit, delete{
+      &__button__image_#{$i}{
+        background-image: url("./components/todo-app/__todo-app__main__list/__todo-app__main__list__item/_todo-app__main__list__item__images/_todo-app__main__list__item__images_#{$i}.png");
+      }
+    }//end of each
+    &__button__image_tick{
+      background-image: url("./components/todo-app/__todo-app__main__list/__todo-app__main__list__item/_todo-app__main__list__item__images/_todo-app__main__list__item__images_tick.png");
+    }
+    &__button__image_tick_active{
+      background-image: url("./components/todo-app/__todo-app__main__list/__todo-app__main__list__item/_todo-app__main__list__item__images/_todo-app__main__list__item__images_tick2.png");
+    }
+  }
+
+}
+//keyframes to use in future
+
+// @keyframes dragOver {
+//   0%{margin-top: 10px;}
+//   100% { margin-top: 40px; }
+// }
+// @keyframes dragOff {
+//   0%{margin-top: 40px;}
+//   100% { margin-top: 10px; }
+// }

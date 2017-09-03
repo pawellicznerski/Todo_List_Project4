@@ -1,0 +1,72 @@
+@import "./../_todo-app__base/todo-app__base__media-query-mixins";
+@import "./../_todo-app__base/_todo-app__base__variables";
+@import "./../_todo-app__base/_todo-app__base__mixins";
+
+.todo-app__main__form{
+  width: 100vw;
+  @include tablet{
+    width: 700px;
+  };
+  &__content{
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color__primary_green;
+    &__form{
+      background-color: $color__primary_green_light;
+      width: 80%;
+      border-radius: 15px 20px 20px 15px;
+      border: 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      &:focus{
+        background-color:$color__green-orange;
+      }
+      &__input{
+        border-radius:20px 0 0 20px;
+        outline: none;
+        border: 0;
+        background-color: $color__primary_green_light;
+        height: 40px;
+        width: 95%;
+        color:  $color__primary_green_dark;
+        font-size: 19px;
+        padding-left: 15px;
+        &:focus{
+          border: 4px solid $color__primary_green_lightest;
+          background-color: $color__background_white;
+          @include todo-app__form__input-placeholder($color__primary_green_dark_opacity_max);
+        }
+        @include todo-app__form__input-placeholder($color__primary_green_dark_opacity_min);
+      }
+      &__button{
+        padding-top: 2px;
+        text-align: center;
+        line-height: 0;
+        vertical-align: middle;
+        border: 0 solid $color__primary_orange;
+        background-color: $color__background_white;
+        color:  $color__primary_green;
+        font-size: 40px;
+        font-weight: bold;
+        border-radius: 20px;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+        outline: none;
+      }
+    }
+  }
+  &__error{
+    width: 100vw;
+    text-align: center;
+    vertical-align: middle;
+    background-color: $color__primary_orange;
+    color: $color__background_white;
+    @include tablet{
+      width: 700px;
+    };
+  }
+}

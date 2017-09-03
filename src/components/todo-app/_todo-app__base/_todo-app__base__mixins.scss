@@ -1,0 +1,30 @@
+@import "./_todo-app__base__keyframes";
+
+@mixin todo-app__main__list__item_box-shadow($color) {
+-webkit-box-shadow: 0px 0px 19px $color;
+-moz-box-shadow: 0px 0px 19px $color;
+-o-transform: 0px 0px 19px $color;
+box-shadow: 0px 0px 19px $color;
+}
+
+@mixin todo-app__form__input-placeholder($value) {
+  &::-webkit-input-placeholder {
+    color: $value;
+    text-align: center;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $value;
+    text-align: center;
+  }
+  &::-ms-input-placeholder { /* IE 10+ */
+    color: $value;
+    text-align: center;
+  }
+}
+
+@mixin animationLogoDotsAndHamburgerNav($value...) {
+-webkit-animation: $value;
+-moz-animation: $value;
+-o-animation: $value;
+animation: $value;
+}

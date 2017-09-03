@@ -18,19 +18,19 @@ export default class TodoFinder extends React.Component {
           <form
             className={
               menuActive
-              ?"header__filters__el  header__filters__el__search"
-              :"header__filters__el header__filters__el_hidden header__filters__el__search"
+              ?"todo-app__header__filters__el  todo-app__header__filters__el__finder"
+              :"todo-app__header__filters__el todo-app__header__filters__el__finder todo-app__header__filters__el__finder_hidden"
             }
             onBlur={this.handleOnBlur.bind(this)}
             onSubmit={this.handleSearch.bind(this)}>
               <input
-                className="header__filters__el__search__input"
+                className="todo-app__header__filters__el__finder__search__input"
                 type="text" placeholder="search for..."
                 value={this.state.value}
                 onChange={this.handleChange.bind(this)}
                 />
               <button
-                className="header__filters__el__search__button"></button>
+                className="todo-app__header__filters__el__finder__search__button"></button>
           </form>
         );
     }

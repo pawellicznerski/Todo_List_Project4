@@ -1,0 +1,21 @@
+@import "./../_todo-app__base/todo-app__base__media-query-mixins";
+@import "./__todo-app__main__list__item/todo-app__main__list__item";
+
+.todo-app__main__list{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  background-color: $color__background_grey;
+
+  @include tablet{
+    width: 700px;
+   };
+  &__container{
+    width: 80%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: $color__background_grey;
+
+  }
+}

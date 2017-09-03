@@ -13,27 +13,27 @@ export default class CreateTodo extends React.Component {
 //function which renders error where the form is filled incorrectly
     renderError() {
         if (!this.state.error) { return null; }
-        return <div className="main__todo-creator__error">{this.state.error}</div>;
+        return <div className="todo-app__main__form__error">{this.state.error}</div>;
     }
 
 // redering a form which all the navigates
     render() {
         return (
-          <div className="main__todo-creator" >
-            <div className="main__todo-creator__content">
+          <div className="todo-app__main__form" >
+            <div className="todo-app__main__form__content">
               <form
-                className="main__todo-creator__content__form"
+                className="todo-app__main__form__content__form"
                 onSubmit={this.handleCreate.bind(this)}
                 onBlur={this.handleOnBlur.bind(this)}
                 >
                   <input
-                    className="main__todo-creator__content__form__input"
+                    className="todo-app__main__form__content__form__input"
                     type="text"
                     placeholder="What do I need to do?"
                     value={this.state.value}
                     onChange={this.handleChange.bind(this)} />
                   <button
-                    className="main__todo-creator__content__form__button"
+                    className="todo-app__main__form__content__form__button"
                     >+</button>
               </form>
             </div>

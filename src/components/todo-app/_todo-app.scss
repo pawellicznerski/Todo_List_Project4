@@ -1,8 +1,11 @@
-@import "./__todo-form/todo-form";
-@import "./__todo-finder/todo-finder";
-@import "./__todo-list/todo-list";
+@import "./__todo-app__main__form/todo-app__main__form";
+@import "./__todo-app__header__filters__el__finder/todo-app__header__filters__el__finder";
+@import "./__todo-app__main__list/todo-app__main__list";
 @import "./_todo-app_basic-styles/todo-app_basic-styles";
-@import "./_todo-app__base/media-query-mixins";
+@import "./_todo-app__base/_todo-app__base__media-query-mixins";
+@import "./_todo-app__base/_todo-app__base__variables";
+//importing mixins with animation working in every browser
+@import "./_todo-app__base/_todo-app__base__mixins";
 
 .todo-app{
   width: 100vw;
@@ -10,18 +13,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(247,190,190,0.1);
+    background-color: $color__background_orange_light;
   };
   &__content{
     width: 100%;
     min-height: 900px;
-    background-color: rgba(230,230,230,1);
+    background-color: $color__background_grey;
     @include tablet{
       width: 700px;
     };
   }
 }//end of todo-app
-  .header{
+  .todo-app__header{
     &__logo{
       border: 0;
       width: 100vw;
@@ -29,7 +32,7 @@
       justify-content: center;
       align-items: center;
       height: 80px;
-      background-color: rgba(247,78,23,1);
+      background-color: $color__primary_orange;
       @include tablet{
         width: 700px;
       };
@@ -38,24 +41,24 @@
         border: 0;
         width:15vw;
         height: 75px;
-        background-color: rgba(247,78,23,1);
-        background-image: url("./components/todo-app/_todo-app__images/header__logo__menu-button_icon.svg");
+        background-color: $color__primary_orange;
+        background-image: url("./components/todo-app/_todo-app__images/todo-app__header__logo__menu-button_icon.svg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
         cursor: pointer;
         &:hover{
           @include tablet{
-            background-color: rgba(255,98,43,1);
+            background-color: $color__primary_orange_light;
           };
         }
       }//end of menu-button
       &__menu-button_active{
-        background-color: rgba(255,98,43,1);
+        background-color: $color__primary_orange_light;
       }
       &__text{
         width:85vw;
-        background-color: rgba(247,78,23,1);
+        background-color: $color__primary_orange;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -63,53 +66,25 @@
         &__words{
           text-align: center;
           vertical-align: middle;
-          background-color: rgba(247,78,23,1);
+          background-color: $color__primary_orange;
           font-family: 'Pacifico', cursive;
-          color: rgba(255,255,255,1);
+          color: $color__background_white;
           font-size: 33px;
         }
         &__dots {
-          background-color: rgba(247,78,23,1);
+          background-color: $color__primary_orange;
           margin-top: 4px;
           width: 25px;
           height: 25px;
-          background-image: url('./components/todo-app/_todo-app__images/header__logo__menu-text_dots.svg');
-          animation: play 3.1s steps(4) infinite;
+          background-image: url('./components/todo-app/_todo-app__images/todo-app__header__logo__menu-text_dots.svg');
+          @include animationLogoDotsAndHamburgerNav(3.1s steps(4) infinite);
         }
       }
     }//end of logo
-    //keyframe which deals with dots sprite
-    @keyframes play {
-      100% { background-position: -100px; }
-    }
-    //two key frames which help animate header filter toggling
-    @keyframes FadeIn {
-     0% {
-       opacity: 0;
-       height: 0;
-     }
-     80%{
-       height: 40px;
-       opacity: 0;
-     }
-     100% {
-       opacity: 1;
-     }
-    }
-    @keyframes FadeOut {
-     0% {
-       opacity: 0;
-       height: 40px;
-     }
-     100%{
-       height: 0;
-     }
-    }
 
-    .header__filters{
+    &__filters{
       width: 100vw;
       border: 0;
-      // border: 1px solid red;
       @include tablet{
         width: 700px;
       };
@@ -117,7 +92,7 @@
         height: 0;
         display: block;
         opacity: 0;
-        animation: FadeOut 0.6s ease-in-out;
+        @include animationLogoDotsAndHamburgerNav(FadeOut 0.6s ease-in-out);
       }
       &_visible{
         display: flex;
@@ -125,34 +100,40 @@
         align-items: center;
         height: 40px;
         opacity: 1;
-        animation: FadeIn 0.6s ease-in-out;
+        @include animationLogoDotsAndHamburgerNav(FadeIn 0.6s ease-in-out);
       }
       &__el{
         display: flex;
         width:45vw;
-        &_hidden{
-          display: none;
+        &__finder{
+          // the element is styled in _todo-app__header__filters__el__finder
+          &_hidden{
+            display: none;
+          }
         }
         &__select{
           cursor: pointer;
-          background-color: rgba(255,255,255,1);
+          background-color: $color__background_white;
           height: 30px;
           margin: 0 1vw 0 2vw;
           width: 40vw;
           border-radius:15px;
-          border: 1px solid  rgba(247,78,23,1);
+          border: 1px solid  $color__primary_orange;
           padding-left: 10px;
-          color: rgba(217,38,13,1);
+          color: $color__primary_orange_dark;
           font-size: 18px;
           outline: none;
           appearance:none;
-          background-image: url("./components/todo-app/_todo-app__images/header__filters__el__select_image_arrow.svg");
+          background-image: url("./components/todo-app/_todo-app__images/todo-app__header__filters__el__select_image_arrow.svg");
           background-position: right;
           background-repeat: no-repeat;
           background-size: contain;
+          &_hidden{
+            display: none;
+          }
           &__item{
             padding-left: 10px;
-            color: rgba(217,38,13,1);
+            color: $color__primary_orange_dark;
             font-size: 18px;
           }
         }

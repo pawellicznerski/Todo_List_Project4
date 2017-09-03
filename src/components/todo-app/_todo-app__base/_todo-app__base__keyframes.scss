@@ -1,0 +1,27 @@
+//keyframe which deals with dots sprite in logo
+@keyframes play {
+  100% { background-position: -100px; }
+}
+//two keyframes which help animate header filter toggling
+@keyframes FadeIn {
+ 0% {
+   opacity: 0;
+   height: 0;
+ }
+ 80%{
+   height: 40px;
+   opacity: 0;
+ }
+ 100% {
+   opacity: 1;
+ }
+}
+@keyframes FadeOut {
+ 0% {
+   opacity: 0;
+   height: 40px;
+ }
+ 100%{
+   height: 0;
+ }
+}
