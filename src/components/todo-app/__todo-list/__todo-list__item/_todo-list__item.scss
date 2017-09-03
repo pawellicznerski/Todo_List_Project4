@@ -22,7 +22,7 @@
     background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__drag-point__image_hand_open.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 20px auto;
   }
   &__text-container{
     width: 55%;
@@ -81,14 +81,14 @@
     }
     @each $i in save, cancel, edit, delete{
       &__button__image_#{$i}{
-        background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_#{$i}.svg");
+        background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_#{$i}.png");
       }
     }//end of each
     &__button__image_tick{
-      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_tick.svg");
+      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_tick.png");
     }
     &__button__image_tick_active{
-      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_tick2.svg");
+      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_tick2.png");
     }
   }
 

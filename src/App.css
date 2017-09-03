@@ -150,10 +150,10 @@
     width: 40px;
     border-radius: 15px 0 0 15px;
     margin: auto 0;
-    background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__drag-point__image_hand_open.svg");
+    background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__drag-point__image_hand_open.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain; }
+    background-size: 20px auto; }
   .todo-app__main__todo-list__item__text-container {
     width: 55%;
     margin-left: 11px;
@@ -199,17 +199,17 @@
       background-size: contain;
       background-color: white; }
     .todo-app__main__todo-list__item__buttons-container__button__image_save {
-      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_save.svg"); }
+      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_save.png"); }
     .todo-app__main__todo-list__item__buttons-container__button__image_cancel {
-      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_cancel.svg"); }
+      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_cancel.png"); }
     .todo-app__main__todo-list__item__buttons-container__button__image_edit {
-      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_edit.svg"); }
+      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_edit.png"); }
     .todo-app__main__todo-list__item__buttons-container__button__image_delete {
-      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_delete.svg"); }
+      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_delete.png"); }
     .todo-app__main__todo-list__item__buttons-container__button__image_tick {
-      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_tick.svg"); }
+      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_tick.png"); }
     .todo-app__main__todo-list__item__buttons-container__button__image_tick_active {
-      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_tick2.svg"); }
+      background-image: url("./components/todo-app/__todo-list/__todo-list__item/_todo-list__item__images/_todo-list__item__images_tick2.png"); }
 
 .todo-app__main__todo-list {
   width: 100vw;
