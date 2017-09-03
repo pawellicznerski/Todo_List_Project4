@@ -225,7 +225,7 @@ export default class App extends React.Component {
     }
     //function which deels with creating a new element on the list
     createTask(task) {
-      this.state.todos=tasksVar;
+      this.setState({ todos: this.state.tasksVar });
       const newId = new Date().getTime().toString();
       this.state.todos.unshift({
           task,
