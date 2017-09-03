@@ -212,7 +212,7 @@ export default class App extends React.Component {
 
   //function which deels with marking if a certain item on a list is completed or not
     toggleTask(task) {
-      this.state.todos=tasksVar;
+      this.setState({ todos: this.state.tasksVar });
       const foundTodo = _.find(this.state.todos, todo => todo?todo.task === task:null);
       const sendValueToFilter = foundTodo.isCompleted?"complete":"incomplete";
       foundTodo.isCompleted = !foundTodo.isCompleted;
@@ -237,7 +237,7 @@ export default class App extends React.Component {
     }
     //function which deels with saving changes in an item
     saveTask(oldTask, newTask) {
-        this.state.todos=tasksVar;
+      this.setState({ todos: this.state.tasksVar });
         const foundTodo = _.find(this.state.todos, todo => todo?todo.task === oldTask:null);
         foundTodo.task = newTask;
         // _.remove(this.state.todos , todo => todo===null);
@@ -246,7 +246,7 @@ export default class App extends React.Component {
     }
     //function which deels with removing a task
     deleteTask(taskToDelete) {
-        this.state.todos=tasksVar;
+      this.setState({ todos: this.state.tasksVar });
         _.remove(this.state.todos, todo => todo.task === taskToDelete);
         // _.remove(this.state.todos, todo => todo===null);
         this.setState({ todos: this.state.todos});
