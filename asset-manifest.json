@@ -1,10 +1,10 @@
 {
-  "main.css": "static/css/main.8b367c39.css",
-  "main.css.map": "static/css/main.8b367c39.css.map",
-  "main.js": "static/js/main.77f501fb.js",
-  "main.js.map": "static/js/main.77f501fb.js.map",
-  "static/media/header__filters__el__select_image_arrow.svg": "static/media/header__filters__el__select_image_arrow.4c916aa9.svg",
-  "static/media/header__logo__menu-button_icon.svg": "static/media/header__logo__menu-button_icon.5627ab09.svg",
-  "static/media/header__logo__menu-text_dots.svg": "static/media/header__logo__menu-text_dots.84a7647f.svg",
-  "static/media/todo-finder_image_magnifyingGlass.svg": "static/media/todo-finder_image_magnifyingGlass.d9557ec4.svg"
+  "main.css": "static/css/main.1f9ea807.css",
+  "main.css.map": "static/css/main.1f9ea807.css.map",
+  "main.js": "static/js/main.131918fd.js",
+  "main.js.map": "static/js/main.131918fd.js.map",
+  "static/media/todo-app__header__filters__el__finder_image_magnifyingGlass.svg": "static/media/todo-app__header__filters__el__finder_image_magnifyingGlass.d9557ec4.svg",
+  "static/media/todo-app__header__filters__el__select_image_arrow.svg": "static/media/todo-app__header__filters__el__select_image_arrow.4c916aa9.svg",
+  "static/media/todo-app__header__logo__menu-button_icon.svg": "static/media/todo-app__header__logo__menu-button_icon.5627ab09.svg",
+  "static/media/todo-app__header__logo__menu-text_dots.svg": "static/media/todo-app__header__logo__menu-text_dots.84a7647f.svg"
 }
