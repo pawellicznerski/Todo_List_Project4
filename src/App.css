@@ -51,7 +51,7 @@
         font-size: 19px;
         padding-left: 15px; }
         .todo-app__main__form__content__form__input:focus {
-          border: 4px solid #d2e6d2;
+          border: 4px solid #b4d2b4;
           background-color: white; }
           .todo-app__main__form__content__form__input:focus::-webkit-input-placeholder {
             color: rgba(50, 150, 50, 0.1);
@@ -229,7 +229,7 @@
         width: 100%;
         min-height: 40px;
         border: 1px solid white;
-        color: #d2e6d2;
+        color: #d27800;
         font-size: 20px;
         font-weight: bold; }
     .todo-app__main__list__item__text-container__text {
@@ -378,11 +378,11 @@
       margin-top: 4px;
       width: 25px;
       height: 25px;
-      background-image: url("./components/todo-app/_todo-app__images/todo-app__header__logo__menu-text_dots.svg");
-      -webkit-animation: 3.1s steps(4) infinite;
-      -moz-animation: 3.1s steps(4) infinite;
-      -o-animation: 3.1s steps(4) infinite;
-      animation: 3.1s steps(4) infinite; }
+      -webkit-animation: play 2.5s steps(4) infinite;
+      -moz-animation: play 2.5s steps(4) infinite;
+      -o-animation: play 2.5s steps(4) infinite;
+      animation: play 2.5s steps(4) infinite;
+      background-image: url("./components/todo-app/_todo-app__images/todo-app__header__logo__menu-text_dots.svg"); }
 
 .todo-app__header__filters {
   width: 100vw;

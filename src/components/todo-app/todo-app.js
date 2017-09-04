@@ -212,12 +212,12 @@ export default class App extends React.Component {
 
   //function which deels with marking if a certain item on a list is completed or not
     toggleTask(task) {
-      this.setState({ todos: this.state.tasksVar });
-      const foundTodo = _.find(this.state.todos, todo => todo?todo.task === task:null);
+      // this.setState({ todos: this.state.tasksVar });
+      const foundTodo = _.find(tasksVar, todo => todo?todo.task === task:null);
       const sendValueToFilter = foundTodo.isCompleted?"complete":"incomplete";
       foundTodo.isCompleted = !foundTodo.isCompleted;
 
-      this.setState({ todos: this.state.todos });
+      this.setState({ todos: tasksVar });
       this.updateLocalStorage(this.state.todos);
       if(this.state.selectionActive){
         this.filterTasks(sendValueToFilter);
@@ -225,31 +225,31 @@ export default class App extends React.Component {
     }
     //function which deels with creating a new element on the list
     createTask(task) {
-      this.setState({ todos: this.state.tasksVar });
+      // this.setState({ todos: this.state.tasksVar });
       const newId = new Date().getTime().toString();
-      this.state.todos.unshift({
+      tasksVar.unshift({
           task,
           isCompleted: false,
           id: newId,
       });
-      this.setState({todos: this.state.todos,selectionActive: false });
+      this.setState({todos: tasksVar,selectionActive: false });
       this.handleComingBackAfterChangeState(this.state.todos);
     }
     //function which deels with saving changes in an item
     saveTask(oldTask, newTask) {
-      this.setState({ todos: this.state.tasksVar });
-        const foundTodo = _.find(this.state.todos, todo => todo?todo.task === oldTask:null);
+      // this.setState({ todos: this.state.tasksVar });
+        const foundTodo = _.find(tasksVar, todo => todo?todo.task === oldTask:null);
         foundTodo.task = newTask;
-        // _.remove(this.state.todos , todo => todo===null);
-        this.setState({ todos: this.state.todos,selectionActive: false,error:"" });
+        // _.remove(tasksVar , todo => todo===null);
+        this.setState({ todos: tasksVar,selectionActive: false,error:"" });
         this.handleComingBackAfterChangeState(this.state.todos);
     }
     //function which deels with removing a task
     deleteTask(taskToDelete) {
-      this.setState({ todos: this.state.tasksVar });
-        _.remove(this.state.todos, todo => todo.task === taskToDelete);
-        // _.remove(this.state.todos, todo => todo===null);
-        this.setState({ todos: this.state.todos});
+      // this.setState({ todos: this.state.tasksVar });
+        _.remove(tasksVar, todo => todo.task === taskToDelete);
+        // _.remove(tasksVar, todo => todo===null);
+        this.setState({ todos: tasksVar});
         this.handleComingBackAfterChangeState(this.state.todos);
     }
     //fn which supports delete/save/create fns and refilters data if the fn were hit while being segregated
