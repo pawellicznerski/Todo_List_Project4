@@ -9,7 +9,7 @@ var tasksVar = [];
 //creating const in which a string from localStorage will be kept
 const tasksVarLocalStorage = localStorage.getItem('storedTasks4');
 //changing the string into proper value and putting it into the array
-tasksVar=tasksVarLocalStorage?JSON.parse(tasksVarLocalStorage):[];
+var tasksVar=tasksVarLocalStorage?JSON.parse(tasksVarLocalStorage):[];
 
 export default class App extends React.Component {
     constructor(props) {
